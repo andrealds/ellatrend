@@ -115,7 +115,7 @@ export default function NewsletterSignup() {
                   }
                   className="border-white"
                 />
-                <span>Product launches</span>
+                <span>Lançamentos de produtos</span>
               </label>
             </div>
 

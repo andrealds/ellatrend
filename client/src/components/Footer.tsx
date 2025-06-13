@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="text-2xl font-bold">TecReview</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Your trusted source for technology reviews, comparisons, and deals.
+              Sua fonte confiável para análises, comparativos e ofertas de tecnologia.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-primary transition-colors">
@@ -33,31 +33,31 @@ export default function Footer() {
 
           {/* Content Links */}
           <div>
-            <h3 className="font-semibold mb-4">Content</h3>
+            <h3 className="font-semibold mb-4">Conteúdo</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <Link to="/category/comparatives">
-                  <span className="hover:text-white transition-colors cursor-pointer">Comparatives</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Comparativos</span>
                 </Link>
               </li>
               <li>
                 <Link to="/category/reviews">
-                  <span className="hover:text-white transition-colors cursor-pointer">Reviews</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Análises</span>
                 </Link>
               </li>
               <li>
                 <Link to="/deals">
-                  <span className="hover:text-white transition-colors cursor-pointer">Deals</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Ofertas</span>
                 </Link>
               </li>
               <li>
                 <Link to="/category/news">
-                  <span className="hover:text-white transition-colors cursor-pointer">News</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Notícias</span>
                 </Link>
               </li>
               <li>
                 <Link to="/guides">
-                  <span className="hover:text-white transition-colors cursor-pointer">Buying Guides</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Guias de Compra</span>
                 </Link>
               </li>
             </ul>
@@ -65,7 +65,7 @@ export default function Footer() {
 
           {/* Category Links */}
           <div>
-            <h3 className="font-semibold mb-4">Categories</h3>
+            <h3 className="font-semibold mb-4">Categorias</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <Link to="/category/smartphones">
@@ -89,7 +89,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/category/audio">
-                  <span className="hover:text-white transition-colors cursor-pointer">Audio</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Áudio</span>
                 </Link>
               </li>
             </ul>
@@ -97,31 +97,31 @@ export default function Footer() {
 
           {/* Support Links */}
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
+            <h3 className="font-semibold mb-4">Suporte</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <Link to="/contact">
-                  <span className="hover:text-white transition-colors cursor-pointer">Contact</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Contato</span>
                 </Link>
               </li>
               <li>
                 <Link to="/about">
-                  <span className="hover:text-white transition-colors cursor-pointer">About Us</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Sobre Nós</span>
                 </Link>
               </li>
               <li>
                 <Link to="/privacy">
-                  <span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Política de Privacidade</span>
                 </Link>
               </li>
               <li>
                 <Link to="/terms">
-                  <span className="hover:text-white transition-colors cursor-pointer">Terms of Use</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Termos de Uso</span>
                 </Link>
               </li>
               <li>
                 <Link to="/disclosure">
-                  <span className="hover:text-white transition-colors cursor-pointer">Affiliate Disclosure</span>
+                  <span className="hover:text-white transition-colors cursor-pointer">Divulgação de Afiliados</span>
                 </Link>
               </li>
             </ul>
@@ -131,12 +131,12 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 TecReview. All rights reserved.
+              © 2024 TecReview. Todos os direitos reservados.
             </p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0 text-sm text-gray-400">
-              <span>Made with</span>
+              <span>Feito com</span>
               <span className="text-red-500">♥</span>
-              <span>for tech enthusiasts</span>
+              <span>para entusiastas de tecnologia</span>
             </div>
           </div>
         </div>
