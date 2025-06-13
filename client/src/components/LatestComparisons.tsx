@@ -16,10 +16,10 @@ export default function LatestComparisons() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Latest Comparisons
+            Últimos Comparativos
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Detailed analysis of the most popular products, with practical tests and recommendations based on real data.
+            Análises detalhadas dos produtos mais populares, com testes práticos e recomendações baseadas em dados reais.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function LatestComparisons() {
                       </Badge>
                     </div>
                     <div className="absolute top-4 right-4 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm">
-                      8 min read
+                      8 min leitura
                     </div>
                   </div>
                   <CardContent className="p-6">
@@ -93,7 +93,7 @@ export default function LatestComparisons() {
                       </div>
                     </div>
                     <Link to={`/post/${post.slug}`}>
-                      <Button className="w-full">Read Comparison</Button>
+                      <Button className="w-full">Ler Comparativo</Button>
                     </Link>
                   </CardContent>
                 </Card>
@@ -104,14 +104,14 @@ export default function LatestComparisons() {
               <Link to="/category/comparison">
                 <Button size="lg" className="bg-primary text-white hover:bg-primary/90">
                   <LayoutGrid className="h-5 w-5 mr-2" />
-                  View All Comparisons
+                  Ver Todos os Comparativos
                 </Button>
               </Link>
             </div>
           </>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-600">No comparisons available yet.</p>
+            <p className="text-gray-600">Nenhum comparativo disponível ainda.</p>
           </div>
         )}
       </div>

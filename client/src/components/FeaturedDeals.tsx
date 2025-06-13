@@ -34,10 +34,10 @@ export default function FeaturedDeals() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Featured Deals
+            Ofertas em Destaque
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            The best technology deals, carefully selected and updated daily.
+            As melhores ofertas de tecnologia, cuidadosamente selecionadas e atualizadas diariamente.
           </p>
         </div>
 
@@ -93,13 +93,13 @@ export default function FeaturedDeals() {
                       </div>
                       <div className="text-xs text-gray-500 mt-1">
                         <span>{deal.store}</span> • 
-                        <span className="text-green-600 ml-1">In Stock</span>
+                        <span className="text-green-600 ml-1">Em Estoque</span>
                       </div>
                     </div>
                     {deal.couponCode && (
                       <div className="mb-3 p-2 bg-yellow-50 border border-yellow-200 rounded">
                         <p className="text-xs text-yellow-800">
-                          Code: <span className="font-mono font-bold">{deal.couponCode}</span>
+                          Código: <span className="font-mono font-bold">{deal.couponCode}</span>
                         </p>
                       </div>
                     )}
@@ -108,7 +108,7 @@ export default function FeaturedDeals() {
                       onClick={() => trackAffiliateClick(deal.id, deal.store, deal.affiliateLink)}
                     >
                       <ShoppingCart className="h-4 w-4 mr-2" />
-                      Buy at {deal.store}
+                      Comprar na {deal.store}
                     </Button>
                   </CardContent>
                 </Card>
