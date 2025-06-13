@@ -10,10 +10,10 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Comparatives", href: "/category/comparatives" },
-    { name: "Deals", href: "/deals" },
-    { name: "Categories", href: "/categories" },
+    { name: "Início", href: "/" },
+    { name: "Comparativos", href: "/category/comparatives" },
+    { name: "Ofertas", href: "/deals" },
+    { name: "Categorias", href: "/categories" },
   ];
 
   return (

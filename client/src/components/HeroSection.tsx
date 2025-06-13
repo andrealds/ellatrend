@@ -18,14 +18,14 @@ export default function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              Welcome to TecReview
+              Bem-vindo ao TecReview
             </h1>
             <p className="text-xl text-blue-100 leading-relaxed mb-8 max-w-2xl mx-auto">
-              Your trusted source for technology reviews, comparisons, and the best deals.
+              Sua fonte confiável para análises de tecnologia, comparativos e as melhores ofertas.
             </p>
             <Link to="/deals">
               <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
-                Explore Deals
+                Explorar Ofertas
               </Button>
             </Link>
           </div>
@@ -40,7 +40,7 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <Badge variant="secondary" className="mb-4 text-primary">
-              FEATURED ARTICLE
+              ARTIGO EM DESTAQUE
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
               {featuredPost.title}
@@ -54,7 +54,7 @@ export default function HeroSection() {
               <Link to={`/post/${featuredPost.slug}`}>
                 <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
                   <Play className="h-5 w-5 mr-2" />
-                  Read Article
+                  Ler Artigo
                 </Button>
               </Link>
               <Button 
@@ -63,7 +63,7 @@ export default function HeroSection() {
                 className="border-white text-white hover:bg-white hover:text-primary"
               >
                 <Bookmark className="h-5 w-5 mr-2" />
-                Save for Later
+                Salvar
               </Button>
             </div>
           </div>
