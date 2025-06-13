@@ -74,7 +74,7 @@ export default function FeaturedDeals() {
                     </div>
                     {deal.isFeatured && (
                       <div className="absolute top-3 right-3">
-                        <Badge variant="destructive">LIMITED OFFER</Badge>
+                        <Badge variant="destructive">OFERTA LIMITADA</Badge>
                       </div>
                     )}
                   </div>
@@ -119,14 +119,14 @@ export default function FeaturedDeals() {
               <Link to="/deals">
                 <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600">
                   <Flame className="h-5 w-5 mr-2" />
-                  View All Deals
+                  Ver Todas as Ofertas
                 </Button>
               </Link>
             </div>
           </>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-600">No deals available yet.</p>
+            <p className="text-gray-600">Nenhuma oferta disponível ainda.</p>
           </div>
         )}
       </div>

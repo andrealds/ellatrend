@@ -56,17 +56,17 @@ export default function NewsletterSignup() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="text-white">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Stay Updated with Tech News
+            Fique Atualizado com Notícias Tech
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Get the best deals, launches, and exclusive reviews directly in your email. No spam, just quality content.
+            Receba as melhores ofertas, lançamentos e reviews exclusivos direto no seu email. Sem spam, apenas conteúdo de qualidade.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <Input
                 type="email"
-                placeholder="Your best email"
+                placeholder="Seu melhor email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-white text-gray-900 placeholder-gray-500"
@@ -82,7 +82,7 @@ export default function NewsletterSignup() {
                 ) : (
                   <Send className="h-4 w-4 mr-2" />
                 )}
-                Subscribe
+                Assinar
               </Button>
             </div>
 
@@ -95,7 +95,7 @@ export default function NewsletterSignup() {
                   }
                   className="border-white"
                 />
-                <span>Special deals</span>
+                <span>Ofertas especiais</span>
               </label>
               <label className="flex items-center space-x-2 cursor-pointer">
                 <Checkbox
@@ -105,7 +105,7 @@ export default function NewsletterSignup() {
                   }
                   className="border-white"
                 />
-                <span>New comparisons</span>
+                <span>Novos comparativos</span>
               </label>
               <label className="flex items-center space-x-2 cursor-pointer">
                 <Checkbox
