@@ -2,6 +2,8 @@ import { Link } from "wouter";
 import { Microchip, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -131,7 +133,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 TecReview. Todos os direitos reservados.
+              © {currentYear} TecReview. Todos os direitos reservados.
             </p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0 text-sm text-gray-400">
               <span>Feito com</span>

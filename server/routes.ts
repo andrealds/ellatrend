@@ -167,6 +167,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         active: active !== 'false', // Por padrão, mostra apenas ofertas ativas
         limit: limit ? parseInt(limit as string) : undefined
       });
+      console.log("Deals retornados:", deals);
       res.json(deals);
     } catch (error) {
       res.status(500).json({ message: "Erro ao buscar ofertas" });

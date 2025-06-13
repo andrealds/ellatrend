@@ -39,10 +39,10 @@ export default function Deals() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Best Tech Deals
+            Melhores Ofertas de Tecnologia
           </h1>
           <p className="text-xl text-gray-600">
-            Discover the latest offers on technology products, carefully selected and updated daily.
+            Descubra as melhores ofertas em produtos de tecnologia, cuidadosamente selecionadas e atualizadas diariamente.
           </p>
         </div>
 
@@ -73,12 +73,12 @@ export default function Deals() {
                   )}
                   <div className="absolute top-3 left-3">
                     <Badge className="deal-badge text-white">
-                      -{deal.discountPercent}% OFF
+                      -{deal.discountPercent}% de desconto
                     </Badge>
                   </div>
                   {deal.isFeatured && (
                     <div className="absolute top-3 right-3">
-                      <Badge variant="destructive">FEATURED</Badge>
+                      <Badge variant="destructive">DESTAQUE</Badge>
                     </div>
                   )}
                 </div>
@@ -97,13 +97,13 @@ export default function Deals() {
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
                       <span>{deal.store}</span> • 
-                      <span className="text-green-600 ml-1">In Stock</span>
+                      <span className="text-green-600 ml-1">Em Estoque</span>
                     </div>
                   </div>
                   {deal.couponCode && (
                     <div className="mb-3 p-2 bg-yellow-50 border border-yellow-200 rounded">
                       <p className="text-xs text-yellow-800">
-                        Use code: <span className="font-mono font-bold">{deal.couponCode}</span>
+                        Código: <span className="font-mono font-bold">{deal.couponCode}</span>
                       </p>
                     </div>
                   )}
@@ -112,7 +112,7 @@ export default function Deals() {
                     onClick={() => trackAffiliateClick(deal.id, deal.store, deal.affiliateLink)}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
-                    Buy at {deal.store}
+                    Comprar na {deal.store}
                   </Button>
                 </CardContent>
               </Card>
@@ -122,10 +122,10 @@ export default function Deals() {
           <Card>
             <CardContent className="pt-6 text-center">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                No deals available
+                Nenhuma oferta disponível
               </h2>
               <p className="text-gray-600">
-                Check back soon for the latest tech deals.
+                Volte em breve para ver as últimas ofertas de tecnologia.
               </p>
             </CardContent>
           </Card>

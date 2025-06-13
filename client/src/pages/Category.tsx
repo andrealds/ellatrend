@@ -7,14 +7,34 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Eye } from "lucide-react";
 import { PostWithDetails } from "@/types";
+import { Category } from "@shared/schema";
 import { Link } from "wouter";
 
-export default function Category() {
+export default function CategoryPage() {
   const { slug } = useParams();
 
-  const { data: posts, isLoading } = useQuery<PostWithDetails[]>({
-    queryKey: [`/api/posts?status=PUBLISHED&categoryId=${slug}`],
+  // Buscar detalhes da categoria
+  const { data: categories } = useQuery<Category[]>({
+    queryKey: [`/api/categories`],
     enabled: !!slug,
+  });
+
+  const category = categories?.find((cat: Category) => cat.slug === slug);
+
+  let postsQueryKey: string[] = [];
+  let postsEnabled: boolean = false;
+
+  if (slug === 'comparatives') {
+    postsQueryKey = [`/api/posts?status=PUBLISHED&type=COMPARISON`];
+    postsEnabled = true;
+  } else if (category) {
+    postsQueryKey = [`/api/posts?status=PUBLISHED&categoryId=${category.id}`];
+    postsEnabled = true;
+  }
+
+  const { data: posts, isLoading } = useQuery<PostWithDetails[]>({
+    queryKey: postsQueryKey,
+    enabled: postsEnabled,
   });
 
   return (
@@ -23,12 +43,19 @@ export default function Category() {
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Category: {slug}
-          </h1>
-          <p className="text-xl text-gray-600">
-            Latest posts and comparisons in this category
-          </p>
+          <div className="flex items-center space-x-4 mb-4">
+            {category?.icon && (
+              <span className="text-4xl" style={{ color: category.color || '#000' }}>{category.icon}</span>
+            )}
+            <h1 className="text-3xl font-bold" style={{ color: category?.color || '#000' }}>
+              {category?.name || (slug === 'comparatives' ? 'Todos os Comparativos' : slug)}
+            </h1>
+          </div>
+          {category?.description && (
+            <p className="text-xl text-gray-600">
+              {category.description}
+            </p>
+          )}
         </div>
 
         {isLoading ? (
@@ -65,7 +92,7 @@ export default function Category() {
                   </div>
                   {post.isFeatured && (
                     <div className="absolute top-4 right-4">
-                      <Badge variant="default">Featured</Badge>
+                      <Badge variant="default">Destaque</Badge>
                     </div>
                   )}
                 </div>
@@ -91,12 +118,12 @@ export default function Category() {
                       </div>
                       <div className="flex items-center space-x-1">
                         <Eye className="h-4 w-4" />
-                        <span>{post.viewCount.toLocaleString()}</span>
+                        <span>{post.viewCount.toLocaleString()} visualizações</span>
                       </div>
                     </div>
                   </div>
                   <Link to={`/post/${post.slug}`}>
-                    <Button className="w-full">Read More</Button>
+                    <Button className="w-full">Ler Mais</Button>
                   </Link>
                 </CardContent>
               </Card>
@@ -106,10 +133,10 @@ export default function Category() {
           <Card>
             <CardContent className="pt-6 text-center">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                No posts found
+                Nenhum post encontrado
               </h2>
               <p className="text-gray-600">
-                There are no posts in this category yet.
+                Ainda não há posts nesta categoria.
               </p>
             </CardContent>
           </Card>

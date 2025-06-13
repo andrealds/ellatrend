@@ -42,7 +42,7 @@ export default function LatestComparisons() {
           </div>
         ) : posts && posts.length > 0 ? (
           <>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-5xl mx-auto">
               {posts.map((post) => (
                 <Card key={post.id} className="card-hover">
                   <div className="relative">

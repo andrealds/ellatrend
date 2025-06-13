@@ -197,7 +197,7 @@ export class MemoryStorage implements IStorage {
       {
         id: "1",
         name: "Samsung Galaxy S24 Ultra",
-        slug: "samsung-galaxy-s24-ultra",
+        slug: "smartphones",
         description: "O smartphone mais avançado da Samsung com S Pen integrada",
         model: "SM-S928B",
         sku: "GAL-S24U-256-BLK",
@@ -250,7 +250,7 @@ export class MemoryStorage implements IStorage {
           camera: "48MP principal + ultra-wide + teleobjetiva",
           bateria: "4441mAh"
         },
-        currentPrice: "8999.00",
+        currentPrice: "7999.00",
         originalPrice: "9999.00",
         affiliateLinks: {
           amazon: "https://amazon.com.br/iphone-15-pro-max",
@@ -270,6 +270,72 @@ export class MemoryStorage implements IStorage {
     ];
 
     products.forEach(product => this.products.set(product.id, product));
+
+    // Seed deals
+    const deals = [
+      {
+        id: "1",
+        title: "Galaxy S24 Ultra com 12% OFF",
+        description: "O smartphone mais avançado da Samsung com desconto especial",
+        productId: "1",
+        originalPrice: "7999.00",
+        dealPrice: "6999.00",
+        discountPercent: 12,
+        couponCode: "SAMSUNG12",
+        affiliateLink: "https://amazon.com.br/galaxy-s24-ultra",
+        store: "Amazon",
+        isActive: true,
+        isFeatured: true,
+        startDate: new Date(),
+        endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 dias
+        clickCount: 0,
+        conversionCount: 0,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: "2",
+        title: "iPhone 15 Pro Max com 10% OFF",
+        description: "O iPhone mais poderoso já criado com desconto exclusivo",
+        productId: "2",
+        originalPrice: "9999.00",
+        dealPrice: "8999.00",
+        discountPercent: 10,
+        couponCode: "APPLE10",
+        affiliateLink: "https://amazon.com.br/iphone-15-pro-max",
+        store: "Amazon",
+        isActive: true,
+        isFeatured: true,
+        startDate: new Date(),
+        endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 dias
+        clickCount: 0,
+        conversionCount: 0,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: "3",
+        title: "iPhone 20 Pro Max com 10% OFF",
+        description: "O iPhone mais poderoso já criado com desconto exclusivo",
+        productId: "2",
+        originalPrice: "9999.00",
+        dealPrice: "8999.00",
+        discountPercent: 10,
+        couponCode: "APPLE10",
+        affiliateLink: "https://amazon.com.br/iphone-15-pro-max",
+        store: "Amazon",
+        isActive: true,
+        isFeatured: true,
+        startDate: new Date(),
+        endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 dias
+        clickCount: 0,
+        conversionCount: 0,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
+    ];
+
+    deals.forEach(deal => this.deals.set(deal.id, deal));
 
     // Seed posts
     const posts = [
@@ -333,7 +399,7 @@ O Galaxy S24 Ultra se destaca pela versatilidade da S Pen e zoom excepcional, en
         metaTitle: "Galaxy S24 Ultra vs iPhone 15 Pro Max: Comparativo Completo 2024",
         metaDescription: "Análise detalhada dos melhores smartphones premium de 2024. Descubra qual é o melhor para você: Galaxy S24 Ultra ou iPhone 15 Pro Max.",
         status: "PUBLISHED",
-        type: "COMPARISON",
+        type: "COMPARAÇÃO",
         viewCount: 15420,
         likeCount: 892,
         isFeatured: true,
@@ -424,56 +490,91 @@ A escolha do notebook ideal depende do seu orçamento e necessidades específica
         subcategoryId: null,
         createdAt: new Date('2024-01-10'),
         updatedAt: new Date('2024-01-10'),
+      },
+      {
+        id: "3",
+        title: "Melhores Notebooks para Home Office em 2024: Guia Completo",
+        slug: "melhores-notebooks-home-office-2024-guia-completo",
+        excerpt: "Descubra os notebooks ideais para trabalhar em casa com máxima produtividade e conforto",
+        content: `
+# Os Melhores Notebooks para Home Office em 2024
+
+## Por que escolher o notebook certo é crucial?
+
+Com o home office se tornando cada vez mais comum, ter um notebook adequado às suas necessidades de trabalho é fundamental para manter a produtividade e evitar problemas de saúde.
+
+## Top 5 Notebooks para Home Office
+
+### 1. MacBook Air M3 (2024)
+- **Processador**: Apple M3
+- **RAM**: 8GB/16GB
+- **Tela**: 13.6" Liquid Retina
+- **Bateria**: Até 18 horas
+- **Preço**: A partir de R$ 10.999
+
+**Prós**: Performance excepcional, bateria duradoura, design premium
+**Contras**: Preço elevado, limitações de conectividade
+
+### 2. Dell XPS 13 Plus
+- **Processador**: Intel Core i7-13700H
+- **RAM**: 16GB LPDDR5
+- **Tela**: 13.4" 4K OLED
+- **Bateria**: Até 12 horas
+- **Preço**: A partir de R$ 8.999
+
+### 3. Lenovo ThinkPad X1 Carbon Gen 11
+- **Processador**: Intel Core i7-1355U
+- **RAM**: 16GB
+- **Tela**: 14" 2.8K OLED
+- **Bateria**: Até 16 horas
+- **Preço**: A partir de R$ 12.999
+
+## Critérios de Avaliação
+
+1. **Performance**: Capacidade de executar tarefas do dia a dia
+2. **Bateria**: Autonomia para um dia de trabalho
+3. **Tela**: Qualidade e conforto visual
+4. **Teclado**: Conforto para digitação prolongada
+5. **Conectividade**: Portas e opções de conexão
+
+## Recomendações por Perfil
+
+### Para Escritório Geral
+- **Recomendado**: MacBook Air M3
+- **Alternativa**: Dell Inspiron 15 3000
+
+### Para Design/Criação
+- **Recomendado**: MacBook Pro 16" M3 Pro
+- **Alternativa**: Dell XPS 15 OLED
+
+### Para Programação
+- **Recomendado**: ThinkPad X1 Carbon
+- **Alternativa**: MacBook Pro 14" M3
+
+## Conclusão
+
+A escolha do notebook ideal depende do seu orçamento e necessidades específicas. Para a maioria dos usuários, o MacBook Air M3 oferece o melhor equilíbrio entre performance, bateria e qualidade de construção.
+
+*Dúvidas? Deixe um comentário que responderemos!*
+        `,
+        featuredImage: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1200&h=600&fit=crop",
+        metaTitle: "Melhores Notebooks Home Office 2024 - Guia de Compra Completo",
+        metaDescription: "Guia definitivo com os melhores notebooks para home office em 2024. Análises, preços e recomendações para cada perfil de usuário.",
+        status: "PUBLISHED",
+        type: "REVIEW",
+        viewCount: 8934,
+        likeCount: 456,
+        isFeatured: true,
+        publishedAt: new Date('2024-01-10'),
+        authorId: "admin",
+        categoryId: "2",
+        subcategoryId: null,
+        createdAt: new Date('2024-01-10'),
+        updatedAt: new Date('2024-01-10'),
       }
     ];
 
     posts.forEach(post => this.posts.set(post.id, post));
-
-    // Seed deals
-    const deals = [
-      {
-        id: "1",
-        title: "Galaxy S24 Ultra com 12% OFF + Frete Grátis",
-        description: "Oferta imperdível do smartphone mais avançado da Samsung",
-        productId: "1",
-        originalPrice: "7999.00",
-        dealPrice: "6999.00",
-        discountPercent: 12.5,
-        couponCode: "GALAXY12OFF",
-        affiliateLink: "https://amazon.com.br/galaxy-s24-ultra-oferta",
-        store: "Amazon",
-        isActive: true,
-        isFeatured: true,
-        startDate: new Date(),
-        endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
-        clickCount: 234,
-        conversionCount: 18,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: "2", 
-        title: "iPhone 15 Pro Max - Desconto de R$ 1.000",
-        description: "Menor preço histórico do iPhone 15 Pro Max",
-        productId: "2",
-        originalPrice: "9999.00",
-        dealPrice: "8999.00",
-        discountPercent: 10,
-        couponCode: null,
-        affiliateLink: "https://magazineluiza.com.br/iphone-15-pro-max-oferta",
-        store: "Magazine Luiza",
-        isActive: true,
-        isFeatured: true,
-        startDate: new Date(),
-        endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days from now
-        clickCount: 456,
-        conversionCount: 28,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }
-    ];
-
-    deals.forEach(deal => this.deals.set(deal.id, deal));
   }
 
   // User operations
@@ -725,6 +826,42 @@ A escolha do notebook ideal depende do seu orçamento e necessidades específica
     if (options.limit) {
       deals = deals.slice(0, options.limit);
     }
+
+    // Incluir dados do produto relacionado
+    deals = deals.map(deal => {
+      if (deal.productId) {
+        const product = this.products.get(deal.productId);
+        if (product) {
+          return {
+            ...deal,
+            product: {
+              id: product.id,
+              name: product.name,
+              slug: product.slug,
+              description: product.description || null,
+              model: product.model || null,
+              sku: product.sku || null,
+              images: Array.isArray(product.images) ? product.images : [],
+              specifications: product.specifications || null,
+              currentPrice: product.currentPrice || null,
+              originalPrice: product.originalPrice || null,
+              affiliateLinks: product.affiliateLinks || {},
+              isActive: product.isActive || false,
+              featured: product.featured || false,
+              rating: product.rating || null,
+              reviewCount: product.reviewCount || 0,
+              availabilityStatus: product.availabilityStatus || "AVAILABLE",
+              brandId: product.brandId || null,
+              categoryId: product.categoryId || null,
+              subcategoryId: product.subcategoryId || null,
+              createdAt: product.createdAt || new Date(),
+              updatedAt: product.updatedAt || new Date()
+            }
+          };
+        }
+      }
+      return deal;
+    });
     
     return deals.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }

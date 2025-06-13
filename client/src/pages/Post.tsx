@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Eye, Heart, Share2, ExternalLink } from "lucide-react";
 import { PostWithDetails } from "@/types";
+import { marked } from "marked";
 
 export default function Post() {
   const { slug } = useParams();
@@ -44,8 +45,8 @@ export default function Post() {
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Card>
             <CardContent className="pt-6 text-center">
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">Post Not Found</h1>
-              <p className="text-gray-600">The post you're looking for doesn't exist or has been removed.</p>
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">Post Não Encontrado</h1>
+              <p className="text-gray-600">O post que você está procurando não existe ou foi removido.</p>
             </CardContent>
           </Card>
         </main>
@@ -53,6 +54,9 @@ export default function Post() {
       </div>
     );
   }
+
+  // Converter o conteúdo Markdown para HTML
+  const contentHtml = marked(post.content);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -64,7 +68,7 @@ export default function Post() {
           <header className="mb-8">
             <div className="flex items-center space-x-2 mb-4">
               <Badge variant="secondary">{post.type}</Badge>
-              {post.isFeatured && <Badge variant="default">Featured</Badge>}
+              {post.isFeatured && <Badge variant="default">Destaque</Badge>}
             </div>
             
             <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
@@ -90,17 +94,17 @@ export default function Post() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Eye className="h-4 w-4" />
-                  <span>{post.viewCount.toLocaleString()} views</span>
+                  <span>{post.viewCount.toLocaleString()} visualizações</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Heart className="h-4 w-4" />
-                  <span>{post.likeCount} likes</span>
+                  <span>{post.likeCount} curtidas</span>
                 </div>
               </div>
               
               <Button variant="outline" size="sm">
                 <Share2 className="h-4 w-4 mr-2" />
-                Share
+                Compartilhar
               </Button>
             </div>
           </header>
@@ -118,7 +122,7 @@ export default function Post() {
 
           {/* Content */}
           <div className="prose prose-lg max-w-none mb-12">
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
           </div>
 
           {/* Call to Action */}
@@ -126,12 +130,12 @@ export default function Post() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">Found this helpful?</h3>
-                  <p className="text-blue-100">Check out our latest deals and comparisons</p>
+                  <h3 className="text-lg font-semibold mb-2">Achou útil?</h3>
+                  <p className="text-blue-100">Confira nossas últimas ofertas e comparações</p>
                 </div>
                 <Button variant="outline" className="text-primary border-white hover:bg-white">
                   <ExternalLink className="h-4 w-4 mr-2" />
-                  View Deals
+                  Ver Ofertas
                 </Button>
               </div>
             </CardContent>
