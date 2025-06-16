@@ -11,8 +11,6 @@ export default function FeaturedDeals() {
     queryKey: ["/api/deals?featured=true&active=true&limit=8"],
   });
 
-  console.log("Deals recebidos:", deals);
-
   const trackAffiliateClick = async (dealId: string, store: string, affiliateLink: string) => {
     try {
       await fetch("/api/affiliate/click", {

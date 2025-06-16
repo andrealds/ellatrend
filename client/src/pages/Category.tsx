@@ -1,41 +1,36 @@
 import { useParams } from "wouter";
-import { useQuery } from "@tanstack/react-query";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Eye } from "lucide-react";
-import { PostWithDetails } from "@/types";
-import { Category } from "@shared/schema";
 import { Link } from "wouter";
+import { useStaticData } from "@/hooks/useStaticData";
+import { Categoria } from "@/types/categorias";
+import { Comparativo } from "@/types/comparativos";
 
 export default function CategoryPage() {
   const { slug } = useParams();
 
-  // Buscar detalhes da categoria
-  const { data: categories } = useQuery<Category[]>({
-    queryKey: [`/api/categories`],
-    enabled: !!slug,
-  });
+  // Buscar categorias e comparativos
+  const { data: categoriesData, loading: categoriesLoading } = useStaticData<{ categorias: Categoria[] }>('categorias.json');
+  const { data: comparativosData, loading: comparativosLoading } = useStaticData<{ comparativos: Comparativo[] }>('comparacoes.json');
 
-  const category = categories?.find((cat: Category) => cat.slug === slug);
+  // Encontrar a categoria pelo slug
+  const category = categoriesData?.categorias.find((cat: Categoria) => cat.slug === slug);
 
-  let postsQueryKey: string[] = [];
-  let postsEnabled: boolean = false;
-
+  // Filtrar posts baseado na categoria ou tipo
+  let posts: Comparativo[] = [];
   if (slug === 'comparatives') {
-    postsQueryKey = [`/api/posts?status=PUBLISHED&type=COMPARISON`];
-    postsEnabled = true;
+    posts = comparativosData?.comparativos.filter(post => post.status === "PUBLISHED") || [];
   } else if (category) {
-    postsQueryKey = [`/api/posts?status=PUBLISHED&categoryId=${category.id}`];
-    postsEnabled = true;
+    posts = comparativosData?.comparativos.filter(post => 
+      post.status === "PUBLISHED" && post.categoria === category.nome
+    ) || [];
   }
 
-  const { data: posts, isLoading } = useQuery<PostWithDetails[]>({
-    queryKey: postsQueryKey,
-    enabled: postsEnabled,
-  });
+  const loading = categoriesLoading || comparativosLoading;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -44,21 +39,21 @@ export default function CategoryPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <div className="flex items-center space-x-4 mb-4">
-            {category?.icon && (
-              <span className="text-4xl" style={{ color: category.color || '#000' }}>{category.icon}</span>
+            {category?.icone && (
+              <span className="text-4xl" style={{ color: category.cor || '#000' }}>{category.icone}</span>
             )}
-            <h1 className="text-3xl font-bold" style={{ color: category?.color || '#000' }}>
-              {category?.name || (slug === 'comparatives' ? 'Todos os Comparativos' : slug)}
+            <h1 className="text-3xl font-bold" style={{ color: category?.cor || '#000' }}>
+              {category?.nome || (slug === 'comparatives' ? 'Todos os Comparativos' : slug)}
             </h1>
           </div>
-          {category?.description && (
+          {category?.descricao && (
             <p className="text-xl text-gray-600">
-              {category.description}
+              {category.descricao}
             </p>
           )}
         </div>
 
-        {isLoading ? (
+        {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
               <Card key={i} className="animate-pulse">
@@ -75,22 +70,22 @@ export default function CategoryPage() {
               </Card>
             ))}
           </div>
-        ) : posts && posts.length > 0 ? (
+        ) : posts.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <Card key={post.id} className="card-hover">
                 <div className="relative">
-                  {post.featuredImage && (
+                  {post.imagemDestaque && (
                     <img
-                      src={post.featuredImage}
-                      alt={post.title}
+                      src={post.imagemDestaque}
+                      alt={post.titulo}
                       className="w-full h-48 object-cover rounded-t-lg"
                     />
                   )}
                   <div className="absolute top-4 left-4">
-                    <Badge variant="secondary">{post.type}</Badge>
+                    <Badge variant="secondary">Comparativo</Badge>
                   </div>
-                  {post.isFeatured && (
+                  {post.destaque && (
                     <div className="absolute top-4 right-4">
                       <Badge variant="default">Destaque</Badge>
                     </div>
@@ -98,11 +93,11 @@ export default function CategoryPage() {
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                    {post.title}
+                    {post.titulo}
                   </h3>
-                  {post.excerpt && (
+                  {post.resumo && (
                     <p className="text-gray-600 mb-4 line-clamp-3">
-                      {post.excerpt}
+                      {post.resumo}
                     </p>
                   )}
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
@@ -110,15 +105,12 @@ export default function CategoryPage() {
                       <div className="flex items-center space-x-1">
                         <Calendar className="h-4 w-4" />
                         <span>
-                          {post.publishedAt 
-                            ? new Date(post.publishedAt).toLocaleDateString('pt-BR')
-                            : new Date(post.createdAt).toLocaleDateString('pt-BR')
-                          }
+                          {new Date(post.dataPublicacao).toLocaleDateString('pt-BR')}
                         </span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <Eye className="h-4 w-4" />
-                        <span>{post.viewCount.toLocaleString()} visualizações</span>
+                        <span>{post.visualizacoes.toLocaleString()} visualizações</span>
                       </div>
                     </div>
                   </div>

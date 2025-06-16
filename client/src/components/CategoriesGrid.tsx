@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { Category } from "@shared/schema";
+import { useStaticData } from "@/hooks/useStaticData";
+import { Categoria } from "@/types/categorias";
 import { Link } from "wouter";
 import { Smartphone, Laptop, Headphones, Tv } from "lucide-react";
 
@@ -12,9 +12,7 @@ const categoryIcons: Record<string, React.ElementType> = {
 };
 
 const CategoriesGrid = () => {
-  const { data: categories, isLoading } = useQuery<Category[]>({
-    queryKey: ["/api/categories"],
-  });
+  const { data, loading } = useStaticData<{ categorias: Categoria[] }>("categorias");
 
   return (
     <section className="py-16 bg-white">
@@ -28,7 +26,7 @@ const CategoriesGrid = () => {
           </p>
         </div>
 
-        {isLoading ? (
+        {loading ? (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[...Array(6)].map((_, i) => (
               <div key={i} className="text-center animate-pulse">
@@ -40,7 +38,7 @@ const CategoriesGrid = () => {
           </div>
         ) : (
           <div className="flex flex-wrap justify-center gap-6">
-            {categories?.map((category) => {
+            {data?.categorias.map((category) => {
               const IconComponent = categoryIcons[category.slug] || Smartphone;
               
               return (
@@ -49,14 +47,14 @@ const CategoriesGrid = () => {
                     <div 
                       className="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center transition-colors"
                       style={{ 
-                        backgroundColor: `${category.color || '#000'}20`,
-                        color: category.color || '#000'
+                        backgroundColor: `${category.cor || '#000'}20`,
+                        color: category.cor || '#000'
                       }}
                     >
                       <IconComponent className="h-8 w-8" />
                     </div>
                     <h3 className="font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                      {category.name}
+                      {category.nome}
                     </h3>
                     <p className="text-sm text-gray-500 mt-1">
                       Ver produtos

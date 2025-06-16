@@ -1,52 +1,40 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { Route, Switch } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "@/pages/Home";
 import Landing from "@/pages/Landing";
-import Admin from "@/pages/Admin";
 import Post from "@/pages/Post";
 import Category from "@/pages/Category";
 import Deals from "@/pages/Deals";
 import NotFound from "@/pages/not-found";
+import Comparativos from "@/pages/Comparativos";
 
-function Router() {
-  const { isAuthenticated, isLoading } = useAuth();
+// Criar uma instância do QueryClient
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
-  return (
-    <Switch>
-      {isLoading || !isAuthenticated ? (
-        <>
-          <Route path="/" component={Landing} />
-          <Route path="/post/:slug" component={Post} />
-          <Route path="/category/:slug" component={Category} />
-          <Route path="/deals" component={Deals} />
-        </>
-      ) : (
-        <>
-          <Route path="/" component={Home} />
-          <Route path="/admin" component={Admin} />
-          <Route path="/post/:slug" component={Post} />
-          <Route path="/category/:slug" component={Category} />
-          <Route path="/deals" component={Deals} />
-        </>
-      )}
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+export default function App() {
+  const { toast } = useToast();
 
-function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/landing" component={Landing} />
+        <Route path="/post/:slug" component={Post} />
+        <Route path="/category/:slug" component={Category} />
+        <Route path="/deals" component={Deals} />
+        <Route path="/comparativos" component={Comparativos} />
+        <Route component={NotFound} />
+      </Switch>
+      <Toaster />
     </QueryClientProvider>
   );
 }
-
-export default App;

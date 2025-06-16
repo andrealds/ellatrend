@@ -1,16 +1,30 @@
-import { useQuery } from "@tanstack/react-query";
+import { useStaticData } from "@/hooks/useStaticData";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, Bookmark } from "lucide-react";
-import { PostWithDetails } from "@/types";
 import { Link } from "wouter";
+import { Comparativo } from "@/types/comparativos";
 
 export default function HeroSection() {
-  const { data: featuredPosts } = useQuery<PostWithDetails[]>({
-    queryKey: ["/api/posts?status=PUBLISHED&featured=true&limit=1"],
-  });
+  const { data, loading } = useStaticData<{ comparativos: Comparativo[] }>("comparativos");
 
-  const featuredPost = featuredPosts?.[0];
+  const featuredPost = data?.comparativos.find(post => post.destaque);
+
+  if (loading) {
+    return (
+      <section className="gradient-bg text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-white/20 rounded w-3/4 mx-auto mb-6"></div>
+              <div className="h-4 bg-white/20 rounded w-1/2 mx-auto mb-8"></div>
+              <div className="h-12 bg-white/20 rounded w-48 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (!featuredPost) {
     return (
@@ -43,11 +57,11 @@ export default function HeroSection() {
               ARTIGO EM DESTAQUE
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              {featuredPost.title}
+              {featuredPost.titulo}
             </h1>
-            {featuredPost.excerpt && (
+            {featuredPost.resumo && (
               <p className="text-xl text-blue-100 leading-relaxed mb-8">
-                {featuredPost.excerpt}
+                {featuredPost.resumo}
               </p>
             )}
             <div className="flex flex-col sm:flex-row gap-4">
@@ -68,19 +82,19 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="relative">
-            {featuredPost.featuredImage ? (
+            {featuredPost.imagemDestaque ? (
               <img
-                src={featuredPost.featuredImage}
-                alt={featuredPost.title}
+                src={featuredPost.imagemDestaque}
+                alt={featuredPost.titulo}
                 className="rounded-xl shadow-2xl w-full"
               />
             ) : (
               <div className="bg-white bg-opacity-20 rounded-xl shadow-2xl w-full h-96 flex items-center justify-center">
-                <span className="text-white text-lg">Featured Article</span>
+                <span className="text-white text-lg">Artigo em Destaque</span>
               </div>
             )}
             <div className="absolute -bottom-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-lg font-semibold shadow-lg">
-              <span className="text-sm">✓ Latest Review</span>
+              <span className="text-sm">✓ Última Análise</span>
             </div>
           </div>
         </div>

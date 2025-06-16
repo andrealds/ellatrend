@@ -1,36 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
+import { useStaticData } from "@/hooks/useStaticData";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, ShoppingCart } from "lucide-react";
-import { DealWithDetails } from "@/types";
+import { ShoppingCart, TrendingDown, AlertCircle } from "lucide-react";
+import { Oferta } from "@/types/ofertas";
 
 export default function Deals() {
-  const { data: deals, isLoading } = useQuery<DealWithDetails[]>({
-    queryKey: ["/api/deals?active=true"],
-  });
+  const { data, loading, error } = useStaticData<{ ofertas: Oferta[] }>("ofertas");
 
-  const trackAffiliateClick = async (dealId: string, store: string, affiliateLink: string) => {
-    try {
-      await fetch("/api/affiliate/click", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          dealId,
-          store,
-        }),
-      });
-      
-      // Open affiliate link in new tab
-      window.open(affiliateLink, "_blank");
-    } catch (error) {
-      console.error("Failed to track click:", error);
-      // Still open the link even if tracking fails
-      window.open(affiliateLink, "_blank");
-    }
-  };
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center py-12">
+            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+            <p className="text-red-600">Erro ao carregar ofertas. Por favor, tente novamente mais tarde.</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -46,7 +39,7 @@ export default function Deals() {
           </p>
         </div>
 
-        {isLoading ? (
+        {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[...Array(8)].map((_, i) => (
               <Card key={i} className="animate-pulse">
@@ -59,24 +52,24 @@ export default function Deals() {
               </Card>
             ))}
           </div>
-        ) : deals && deals.length > 0 ? (
+        ) : data?.ofertas && data.ofertas.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {deals.map((deal) => (
-              <Card key={deal.id} className="card-hover">
+            {data.ofertas.map((oferta) => (
+              <Card key={oferta.id} className="card-hover">
                 <div className="relative">
-                  {deal.product?.images && deal.product.images.length > 0 && (
+                  {oferta.produto.imagens && oferta.produto.imagens.length > 0 && (
                     <img
-                      src={deal.product.images[0]}
-                      alt={deal.title}
+                      src={oferta.produto.imagens[0]}
+                      alt={oferta.titulo}
                       className="w-full h-40 object-cover rounded-t-lg"
                     />
                   )}
                   <div className="absolute top-3 left-3">
                     <Badge className="deal-badge text-white">
-                      -{deal.discountPercent}% de desconto
+                      -{oferta.descontoPercentual}% de desconto
                     </Badge>
                   </div>
-                  {deal.isFeatured && (
+                  {oferta.destaque && (
                     <div className="absolute top-3 right-3">
                       <Badge variant="destructive">DESTAQUE</Badge>
                     </div>
@@ -84,35 +77,31 @@ export default function Deals() {
                 </div>
                 <CardContent className="p-4">
                   <h3 className="font-bold text-gray-900 mb-2 line-clamp-2">
-                    {deal.title}
+                    {oferta.titulo}
                   </h3>
+                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                    {oferta.descricao}
+                  </p>
                   <div className="mb-3">
                     <div className="flex items-center space-x-2">
                       <span className="text-2xl font-bold text-green-600">
-                        R$ {parseFloat(deal.dealPrice).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        R$ {Number(oferta.precoOferta).toLocaleString()}
                       </span>
                       <span className="text-sm text-gray-500 line-through">
-                        R$ {parseFloat(deal.originalPrice).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        R$ {Number(oferta.precoOriginal).toLocaleString()}
                       </span>
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
-                      <span>{deal.store}</span> • 
+                      <span>{oferta.loja}</span> • 
                       <span className="text-green-600 ml-1">Em Estoque</span>
                     </div>
                   </div>
-                  {deal.couponCode && (
-                    <div className="mb-3 p-2 bg-yellow-50 border border-yellow-200 rounded">
-                      <p className="text-xs text-yellow-800">
-                        Código: <span className="font-mono font-bold">{deal.couponCode}</span>
-                      </p>
-                    </div>
-                  )}
                   <Button
                     className="affiliate-btn w-full text-white"
-                    onClick={() => trackAffiliateClick(deal.id, deal.store, deal.affiliateLink)}
+                    onClick={() => window.open(oferta.linkAfiliado, "_blank")}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
-                    Comprar na {deal.store}
+                    Comprar na {oferta.loja}
                   </Button>
                 </CardContent>
               </Card>

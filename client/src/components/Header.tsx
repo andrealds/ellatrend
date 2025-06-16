@@ -11,7 +11,7 @@ export default function Header() {
 
   const navigation = [
     { name: "Início", href: "/" },
-    { name: "Comparativos", href: "/category/comparatives" },
+    { name: "Comparativos", href: "/comparativos" },
     { name: "Ofertas", href: "/deals" },
     { name: "Categorias", href: "/categories" },
   ];

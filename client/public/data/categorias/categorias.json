@@ -1,0 +1,132 @@
+{
+  "categorias": [
+    {
+      "id": "1",
+      "nome": "Smartphones",
+      "slug": "smartphones",
+      "descricao": "Análises e comparativos dos melhores smartphones do mercado",
+      "icone": "📱",
+      "cor": "#3B82F6",
+      "ativo": true,
+      "ordem": 1,
+      "subcategorias": [
+        {
+          "id": "1-1",
+          "nome": "Android",
+          "slug": "android",
+          "descricao": "Smartphones com sistema operacional Android",
+          "icone": "🤖",
+          "cor": "#10B981",
+          "ativo": true,
+          "ordem": 1
+        },
+        {
+          "id": "1-2",
+          "nome": "iOS",
+          "slug": "ios",
+          "descricao": "iPhones e dispositivos Apple",
+          "icone": "🍎",
+          "cor": "#F59E0B",
+          "ativo": true,
+          "ordem": 2
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nome": "Notebooks",
+      "slug": "notebooks",
+      "descricao": "Reviews detalhados de notebooks para trabalho e gaming",
+      "icone": "💻",
+      "cor": "#10B981",
+      "ativo": true,
+      "ordem": 2,
+      "subcategorias": [
+        {
+          "id": "2-1",
+          "nome": "Gaming",
+          "slug": "gaming",
+          "descricao": "Notebooks otimizados para jogos",
+          "icone": "🎮",
+          "cor": "#EF4444",
+          "ativo": true,
+          "ordem": 1
+        },
+        {
+          "id": "2-2",
+          "nome": "Profissional",
+          "slug": "profissional",
+          "descricao": "Notebooks para trabalho e produtividade",
+          "icone": "💼",
+          "cor": "#6366F1",
+          "ativo": true,
+          "ordem": 2
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "nome": "Fones de Ouvido",
+      "slug": "fones-de-ouvido",
+      "descricao": "Testes de qualidade de áudio e conforto",
+      "icone": "🎧",
+      "cor": "#F59E0B",
+      "ativo": true,
+      "ordem": 3,
+      "subcategorias": [
+        {
+          "id": "3-1",
+          "nome": "TWS",
+          "slug": "tws",
+          "descricao": "Fones de ouvido sem fio",
+          "icone": "🎵",
+          "cor": "#8B5CF6",
+          "ativo": true,
+          "ordem": 1
+        },
+        {
+          "id": "3-2",
+          "nome": "Over-Ear",
+          "slug": "over-ear",
+          "descricao": "Fones de ouvido circumaurais",
+          "icone": "🎧",
+          "cor": "#EC4899",
+          "ativo": true,
+          "ordem": 2
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "nome": "Smart TVs",
+      "slug": "smart-tvs",
+      "descricao": "Análises de qualidade de imagem e recursos smart",
+      "icone": "📺",
+      "cor": "#EF4444",
+      "ativo": true,
+      "ordem": 4,
+      "subcategorias": [
+        {
+          "id": "4-1",
+          "nome": "LED",
+          "slug": "led",
+          "descricao": "TVs com tecnologia LED",
+          "icone": "🖥️",
+          "cor": "#14B8A6",
+          "ativo": true,
+          "ordem": 1
+        },
+        {
+          "id": "4-2",
+          "nome": "OLED",
+          "slug": "oled",
+          "descricao": "TVs com tecnologia OLED",
+          "icone": "📺",
+          "cor": "#F97316",
+          "ativo": true,
+          "ordem": 2
+        }
+      ]
+    }
+  ]
+} 
