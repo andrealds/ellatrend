@@ -105,7 +105,7 @@ export default function NewsletterSignup() {
                   }
                   className="border-white"
                 />
-                <span>Novos comparativos</span>
+                <span>Novos artigos</span>
               </label>
               <label className="flex items-center space-x-2 cursor-pointer">
                 <Checkbox

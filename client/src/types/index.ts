@@ -78,3 +78,18 @@ export interface CategoryWithDetails {
   createdAt: Date;
   updatedAt: Date;
 }
+
+// Export types from artigos
+export type { 
+  CategoriaArtigo, 
+  StatusArtigo, 
+  ArtigoUniversal, 
+  ArtigoResponse, 
+  ArtigoFormData, 
+  ArtigoFilters 
+} from './artigos';
+
+export { 
+  CATEGORIAS_ARTIGO, 
+  STATUS_ARTIGO 
+} from './artigos';

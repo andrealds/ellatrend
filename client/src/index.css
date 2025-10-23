@@ -100,4 +100,73 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  
+  /* Animações femininas suaves */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) scale(1);
+    }
+    50% {
+      transform: translateY(-20px) scale(1.05);
+    }
+  }
+  
+  @keyframes wave {
+    0%, 100% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+  }
+  
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.2);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { 
+      opacity: 0.2; 
+      transform: scale(1);
+    }
+    50% { 
+      opacity: 0.4; 
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Gradiente feminino suave para o hero */
+.gradient-bg {
+  background: linear-gradient(135deg, 
+    hsl(330, 50%, 85%) 0%, 
+    hsl(280, 40%, 90%) 25%,
+    hsl(200, 30%, 92%) 50%,
+    hsl(280, 40%, 90%) 75%,
+    hsl(330, 50%, 85%) 100%
+  );
+}
+
+/* Classes de animação para elementos decorativos */
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 8s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 4s ease-in-out infinite;
 }

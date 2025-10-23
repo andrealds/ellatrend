@@ -31,11 +31,13 @@ export default function Deals() {
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Melhores Ofertas de Tecnologia
-          </h1>
-          <p className="text-xl text-gray-600">
-            Descubra as melhores ofertas em produtos de tecnologia, cuidadosamente selecionadas e atualizadas diariamente.
+          <div className="flex items-center justify-center mb-4">
+            <span className="text-3xl lg:text-4xl font-serif font-light text-gray-900">Ella</span>
+            <span className="text-3xl lg:text-4xl font-bold text-purple-600 ml-2">Trend</span>
+            <span className="text-3xl lg:text-4xl font-bold text-gray-900 ml-2">Ofertas</span>
+          </div>
+          <p className="text-xl text-gray-600 text-center">
+            Produtos de beleza, bem-estar e desenvolvimento pessoal com preços especiais.
           </p>
         </div>
 
@@ -55,18 +57,18 @@ export default function Deals() {
         ) : data?.ofertas && data.ofertas.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {data.ofertas.map((oferta) => (
-              <Card key={oferta.id} className="card-hover">
+              <Card key={oferta.id} className="card-hover shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="relative">
-                  {oferta.produto.imagens && oferta.produto.imagens.length > 0 && (
+                  {oferta.imagem && (
                     <img
-                      src={oferta.produto.imagens[0]}
+                      src={oferta.imagem}
                       alt={oferta.titulo}
                       className="w-full h-40 object-cover rounded-t-lg"
                     />
                   )}
                   <div className="absolute top-3 left-3">
                     <Badge className="deal-badge text-white">
-                      -{oferta.descontoPercentual}% de desconto
+                      -{oferta.desconto}% de desconto
                     </Badge>
                   </div>
                   {oferta.destaque && (
@@ -85,10 +87,10 @@ export default function Deals() {
                   <div className="mb-3">
                     <div className="flex items-center space-x-2">
                       <span className="text-2xl font-bold text-green-600">
-                        R$ {Number(oferta.precoOferta).toLocaleString()}
+                        R$ {Number(oferta.precoDesconto).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                       <span className="text-sm text-gray-500 line-through">
-                        R$ {Number(oferta.precoOriginal).toLocaleString()}
+                        R$ {Number(oferta.precoOriginal).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
@@ -97,8 +99,8 @@ export default function Deals() {
                     </div>
                   </div>
                   <Button
-                    className="affiliate-btn w-full text-white"
-                    onClick={() => window.open(oferta.linkAfiliado, "_blank")}
+                    className="w-full bg-gray-800/20 backdrop-blur-md hover:bg-gray-800/30 transition-colors text-gray-800"
+                    onClick={() => window.open(oferta.link, "_blank")}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     Comprar na {oferta.loja}
@@ -114,7 +116,7 @@ export default function Deals() {
                 Nenhuma oferta disponível
               </h2>
               <p className="text-gray-600">
-                Volte em breve para ver as últimas ofertas de tecnologia.
+                Volte em breve para ver as últimas ofertas de beleza e bem-estar.
               </p>
             </CardContent>
           </Card>

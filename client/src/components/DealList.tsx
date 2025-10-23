@@ -55,18 +55,18 @@ export default function DealList({ destaque, limite = 6 }: DealListProps) {
   return (
     <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
       {ofertas.map((oferta) => (
-        <Card key={oferta.id} className="w-80 card-hover">
+        <Card key={oferta.id} className="w-80 card-hover shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="relative">
-            {oferta.produto.imagens && oferta.produto.imagens.length > 0 && (
+            {oferta.imagem && (
               <img
-                src={oferta.produto.imagens[0]}
+                src={oferta.imagem}
                 alt={oferta.titulo}
                 className="w-full h-40 object-cover rounded-t-lg"
               />
             )}
             <div className="absolute top-3 left-3">
               <Badge className="deal-badge text-white">
-                -{oferta.descontoPercentual}% de desconto
+                -{oferta.desconto}% de desconto
               </Badge>
             </div>
             {oferta.destaque && (
@@ -85,10 +85,10 @@ export default function DealList({ destaque, limite = 6 }: DealListProps) {
             <div className="mb-3">
               <div className="flex items-center space-x-2">
                 <span className="text-2xl font-bold text-green-600">
-                  R$ {Number(oferta.precoOferta).toLocaleString()}
+                  R$ {Number(oferta.precoDesconto).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
                 <span className="text-sm text-gray-500 line-through">
-                  R$ {Number(oferta.precoOriginal).toLocaleString()}
+                  R$ {Number(oferta.precoOriginal).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
               </div>
               <div className="text-xs text-gray-500 mt-1">
@@ -97,8 +97,8 @@ export default function DealList({ destaque, limite = 6 }: DealListProps) {
               </div>
             </div>
             <Button
-              className="affiliate-btn w-full text-white"
-              onClick={() => window.open(oferta.linkAfiliado, "_blank")}
+              className="w-full bg-gray-800/20 backdrop-blur-md hover:bg-gray-800/30 transition-colors text-gray-800"
+              onClick={() => window.open(oferta.link, "_blank")}
             >
               <ShoppingCart className="h-4 w-4 mr-2" />
               Comprar na {oferta.loja}

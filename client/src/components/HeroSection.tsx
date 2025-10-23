@@ -1,103 +1,33 @@
-import { useStaticData } from "@/hooks/useStaticData";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Play, Bookmark } from "lucide-react";
-import { Link } from "wouter";
-import { Comparativo } from "@/types/comparativos";
+import WellnessCarousel from "./NewsCarousel";
 
 export default function HeroSection() {
-  const { data, loading } = useStaticData<{ comparativos: Comparativo[] }>("comparativos");
-
-  const featuredPost = data?.comparativos.find(post => post.destaque);
-
-  if (loading) {
-    return (
-      <section className="gradient-bg text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-          <div className="text-center">
-            <div className="animate-pulse">
-              <div className="h-8 bg-white/20 rounded w-3/4 mx-auto mb-6"></div>
-              <div className="h-4 bg-white/20 rounded w-1/2 mx-auto mb-8"></div>
-              <div className="h-12 bg-white/20 rounded w-48 mx-auto"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!featuredPost) {
-    return (
-      <section className="gradient-bg text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-          <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              Bem-vindo ao TecReview
-            </h1>
-            <p className="text-xl text-blue-100 leading-relaxed mb-8 max-w-2xl mx-auto">
-              Sua fonte confiável para análises de tecnologia, comparativos e as melhores ofertas.
-            </p>
-            <Link to="/deals">
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
-                Explorar Ofertas
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="gradient-bg text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <Badge variant="secondary" className="mb-4 text-primary">
-              ARTIGO EM DESTAQUE
-            </Badge>
-            <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              {featuredPost.titulo}
-            </h1>
-            {featuredPost.resumo && (
-              <p className="text-xl text-blue-100 leading-relaxed mb-8">
-                {featuredPost.resumo}
-              </p>
-            )}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to={`/post/${featuredPost.slug}`}>
-                <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
-                  <Play className="h-5 w-5 mr-2" />
-                  Ler Artigo
-                </Button>
-              </Link>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="bg-white text-primary hover:bg-gray-100"
-              >
-                <Bookmark className="h-5 w-5 mr-2" />
-                Salvar
-              </Button>
-            </div>
-          </div>
-          <div className="relative">
-            {featuredPost.imagemDestaque ? (
-              <img
-                src={featuredPost.imagemDestaque}
-                alt={featuredPost.titulo}
-                className="rounded-xl shadow-2xl w-full"
-              />
-            ) : (
-              <div className="bg-white bg-opacity-20 rounded-xl shadow-2xl w-full h-96 flex items-center justify-center">
-                <span className="text-white text-lg">Artigo em Destaque</span>
-              </div>
-            )}
-            <div className="absolute -bottom-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-lg font-semibold shadow-lg">
-              <span className="text-sm">✓ Última Análise</span>
-            </div>
-          </div>
-        </div>
+    <section className="gradient-bg text-white relative overflow-hidden">
+      {/* Bolas decorativas */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Bolas grandes */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-pink-200/30 rounded-full blur-sm"></div>
+        <div className="absolute top-20 right-20 w-24 h-24 bg-purple-200/25 rounded-full blur-sm"></div>
+        <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-blue-200/20 rounded-full blur-sm"></div>
+        <div className="absolute top-1/2 right-1/3 w-28 h-28 bg-yellow-200/25 rounded-full blur-sm"></div>
+        <div className="absolute bottom-32 right-10 w-36 h-36 bg-green-200/20 rounded-full blur-sm"></div>
+        
+        {/* Bolas médias */}
+        <div className="absolute top-32 left-1/3 w-20 h-20 bg-pink-300/20 rounded-full blur-sm"></div>
+        <div className="absolute bottom-40 right-1/4 w-16 h-16 bg-purple-300/25 rounded-full blur-sm"></div>
+        <div className="absolute top-2/3 left-10 w-22 h-22 bg-blue-300/15 rounded-full blur-sm"></div>
+        <div className="absolute bottom-10 right-1/2 w-18 h-18 bg-yellow-300/20 rounded-full blur-sm"></div>
+        
+        {/* Bolas pequenas */}
+        <div className="absolute top-16 right-1/2 w-12 h-12 bg-pink-400/30 rounded-full blur-sm"></div>
+        <div className="absolute bottom-16 left-1/2 w-14 h-14 bg-purple-400/25 rounded-full blur-sm"></div>
+        <div className="absolute top-1/3 left-1/2 w-10 h-10 bg-blue-400/20 rounded-full blur-sm"></div>
+        <div className="absolute bottom-1/3 right-1/2 w-16 h-16 bg-green-400/15 rounded-full blur-sm"></div>
+      </div>
+      
+      {/* Carrossel de Dicas */}
+      <div className="relative z-10">
+        <WellnessCarousel />
       </div>
     </section>
   );

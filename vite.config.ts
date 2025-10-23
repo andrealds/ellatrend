@@ -37,6 +37,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    host: true, // Permite acesso de qualquer IP na rede local
     open: true,
   },
 });

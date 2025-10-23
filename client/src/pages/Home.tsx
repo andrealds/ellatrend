@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useStaticData } from "@/hooks/useStaticData";
-import { Comparativo } from "@/types/comparativos";
 import { Oferta } from "@/types/ofertas";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,15 +8,14 @@ import { ArrowRight, ShoppingBag } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import LatestComparisons from "@/components/LatestComparisons";
-import CategoriesGrid from "@/components/CategoriesGrid";
+import WellnessStories from "@/components/EllaStories";
+import LatestArticles from "@/components/LatestArticles";
 import DealList from "@/components/DealList";
 
 export default function Home() {
-  const { data: comparativosData, loading: loadingComparativos } = useStaticData<{ comparativos: Comparativo[] }>("comparativos");
   const { data: ofertasData, loading: loadingOfertas } = useStaticData<{ ofertas: Oferta[] }>("ofertas");
 
-  if (loadingComparativos || loadingOfertas) {
+  if (loadingOfertas) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
@@ -32,36 +30,43 @@ export default function Home() {
     );
   }
 
-  const comparativos = comparativosData?.comparativos || [];
   const ofertas = ofertasData?.ofertas || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <HeroSection />
+      <WellnessStories />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <LatestComparisons />
-        <div className="mt-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Ofertas em Destaque
-            </h2>
+        <LatestArticles />
+        <div className="mt-8">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center mb-2 sm:mb-4">
+              <span className="text-4xl lg:text-5xl" style={{ fontFamily: 'Dancing Script, cursive', color: '#581C87' }}>Ella</span>
+              <span className="text-3xl lg:text-4xl font-bold text-gray-900 ml-2">Ofertas</span>
+            </div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              As melhores ofertas selecionadas especialmente para você.
+              Produtos de beleza, bem-estar e desenvolvimento pessoal com preços especiais.
             </p>
           </div>
           <DealList destaque limite={6} />
           <div className="text-center mt-12">
             <Link to="/deals">
-              <Button size="lg" className="bg-primary text-white hover:bg-primary/90">
+              <Button size="lg" className="bg-gray-800/20 backdrop-blur-md hover:bg-gray-800/30 transition-colors text-gray-800">
                 <ShoppingBag className="h-5 w-5 mr-2" />
                 Ver Todas as Ofertas
               </Button>
             </Link>
           </div>
         </div>
-        <div className="mt-16">
-          <CategoriesGrid />
+        {/* Banner Google Ads */}
+        <div className="mt-16 flex justify-center">
+          <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 w-full max-w-4xl text-center">
+            <div className="text-gray-500 text-sm mb-4">Publicidade</div>
+            <div className="bg-white border border-gray-200 rounded p-6 h-32 flex items-center justify-center">
+              <span className="text-gray-400 text-sm">Google Ads Banner<br/>728x90</span>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />

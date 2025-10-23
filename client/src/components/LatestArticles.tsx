@@ -4,13 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Eye, Star, LayoutGrid } from "lucide-react";
 import { Link } from "wouter";
 import { useStaticData } from "@/hooks/useStaticData";
-import { Comparativo } from "@/types/comparativos";
+import { Artigo } from "@/types/artigos";
 
-export default function LatestComparisons() {
-  const { data, loading, error } = useStaticData<{ comparativos: Comparativo[] }>("comparativos");
+export default function LatestArticles() {
+  const { data, loading, error } = useStaticData<{ artigos: Artigo[] }>("artigos-beleza");
 
-  // Filtrar apenas os comparativos e limitar a 6
-  const posts = data?.comparativos.slice(0, 6) || [];
+  // Filtrar apenas os artigos e limitar a 6
+  const posts = data?.artigos.slice(0, 6) || [];
 
   if (loading) {
     return (
@@ -36,7 +36,7 @@ export default function LatestComparisons() {
   if (error) {
     return (
       <div className="text-center py-12">
-        <p className="text-red-600">Erro ao carregar os comparativos.</p>
+        <p className="text-red-600">Erro ao carregar os artigos.</p>
       </div>
     );
   }
@@ -44,26 +44,27 @@ export default function LatestComparisons() {
   if (posts.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600">Nenhum comparativo disponível ainda.</p>
+        <p className="text-gray-600">Nenhum artigo disponível ainda.</p>
       </div>
     );
   }
 
   return (
-    <section className="py-16 bg-white">
+    <section className="pt-4 pb-8 sm:py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Últimos Comparativos
-          </h2>
+          <div className="flex items-center justify-center mb-2 sm:mb-4">
+            <span className="text-4xl lg:text-5xl" style={{ fontFamily: 'Dancing Script, cursive', color: '#581C87' }}>Ella</span>
+            <span className="text-3xl lg:text-4xl font-bold text-gray-900 ml-2">Conteúdo</span>
+          </div>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Análises detalhadas dos produtos mais populares, com testes práticos e recomendações baseadas em dados reais.
+            Dicas exclusivas de beleza, bem-estar e alimentação.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-5xl mx-auto">
           {posts.map((post) => (
-            <Card key={post.id} className="card-hover overflow-hidden">
+            <Card key={post.id} className="card-hover overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="relative aspect-video">
                 {post.imagemDestaque ? (
                   <img
@@ -78,7 +79,7 @@ export default function LatestComparisons() {
                 )}
                 <div className="absolute top-3 left-3 z-10">
                   <Badge variant="default" className="bg-primary">
-                    Comparativo
+                    {post.categoria || 'Dica'}
                   </Badge>
                 </div>
                 {post.destaque && (
@@ -87,19 +88,19 @@ export default function LatestComparisons() {
                   </div>
                 )}
                 <div className="absolute bottom-3 right-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm">
-                  8 min leitura
+                  {post.tempoLeitura || '5 min leitura'}
                 </div>
               </div>
-              <CardContent className="p-6">
+              <CardContent className="p-6 bg-white">
                 <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                   {post.titulo}
                 </h3>
-                {post.resumo && (
+                {post.descricao && (
                   <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.resumo}
+                    {post.descricao}
                   </p>
                 )}
-                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                <div className="hidden sm:flex items-center justify-between text-sm text-gray-500 mb-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-1">
                       <Calendar className="h-4 w-4" />
@@ -113,19 +114,23 @@ export default function LatestComparisons() {
                     <span className="font-medium">4.8</span>
                   </div>
                 </div>
-                <Link to={`/post/${post.slug}`}>
-                  <Button className="w-full">Ler Comparativo</Button>
-                </Link>
+                <div className="hidden sm:block">
+                  <Link to={`/artigo/${post.slug}`}>
+                    <Button className="w-full bg-gray-800/20 backdrop-blur-md hover:bg-gray-800/30 transition-colors text-gray-800">
+                      Ler Artigo
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
         
         <div className="text-center">
-          <Link to="/comparativos">
-            <Button size="lg" className="bg-primary text-white hover:bg-primary/90">
+          <Link to="/artigos">
+            <Button size="lg" className="bg-gray-800/20 backdrop-blur-md hover:bg-gray-800/30 transition-colors text-gray-800">
               <LayoutGrid className="h-5 w-5 mr-2" />
-              Ver Todos os Comparativos
+              Ver Todos os Artigos
             </Button>
           </Link>
         </div>

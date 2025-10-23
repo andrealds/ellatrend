@@ -8,29 +8,27 @@ import { Calendar, Eye } from "lucide-react";
 import { Link } from "wouter";
 import { useStaticData } from "@/hooks/useStaticData";
 import { Categoria } from "@/types/categorias";
-import { Comparativo } from "@/types/comparativos";
+import { Artigo } from "@/types/artigos";
 
 export default function CategoryPage() {
   const { slug } = useParams();
 
-  // Buscar categorias e comparativos
+  // Buscar categorias e artigos
   const { data: categoriesData, loading: categoriesLoading } = useStaticData<{ categorias: Categoria[] }>('categorias.json');
-  const { data: comparativosData, loading: comparativosLoading } = useStaticData<{ comparativos: Comparativo[] }>('comparacoes.json');
+  const { data: artigosData, loading: artigosLoading } = useStaticData<{ artigos: Artigo[] }>('artigos-beleza');
 
   // Encontrar a categoria pelo slug
   const category = categoriesData?.categorias.find((cat: Categoria) => cat.slug === slug);
 
-  // Filtrar posts baseado na categoria ou tipo
-  let posts: Comparativo[] = [];
-  if (slug === 'comparatives') {
-    posts = comparativosData?.comparativos.filter(post => post.status === "PUBLISHED") || [];
-  } else if (category) {
-    posts = comparativosData?.comparativos.filter(post => 
-      post.status === "PUBLISHED" && post.categoria === category.nome
+  // Filtrar posts baseado na categoria
+  let posts: Artigo[] = [];
+  if (category) {
+    posts = artigosData?.artigos.filter(post => 
+      post.categoria === category.nome
     ) || [];
   }
 
-  const loading = categoriesLoading || comparativosLoading;
+  const loading = categoriesLoading || artigosLoading;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -43,7 +41,7 @@ export default function CategoryPage() {
               <span className="text-4xl" style={{ color: category.cor || '#000' }}>{category.icone}</span>
             )}
             <h1 className="text-3xl font-bold" style={{ color: category?.cor || '#000' }}>
-              {category?.nome || (slug === 'comparatives' ? 'Todos os Comparativos' : slug)}
+              {category?.nome || slug}
             </h1>
           </div>
           {category?.descricao && (
@@ -83,7 +81,7 @@ export default function CategoryPage() {
                     />
                   )}
                   <div className="absolute top-4 left-4">
-                    <Badge variant="secondary">Comparativo</Badge>
+                    <Badge variant="secondary">Artigo</Badge>
                   </div>
                   {post.destaque && (
                     <div className="absolute top-4 right-4">
@@ -114,7 +112,7 @@ export default function CategoryPage() {
                       </div>
                     </div>
                   </div>
-                  <Link to={`/post/${post.slug}`}>
+                  <Link to={`/artigo/${post.slug}`}>
                     <Button className="w-full">Ler Mais</Button>
                   </Link>
                 </CardContent>

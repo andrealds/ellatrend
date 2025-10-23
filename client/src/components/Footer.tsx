@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Microchip, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Heart, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,11 +11,11 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="col-span-1">
             <div className="flex items-center mb-4">
-              <Microchip className="h-6 w-6 text-primary mr-2" />
-              <span className="text-2xl font-bold">TecReview</span>
+              <Heart className="h-6 w-6 text-primary mr-2" />
+              <span className="text-2xl font-bold">EllaTrend</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Sua fonte confiável para análises, comparativos e ofertas de tecnologia.
+              Sua fonte confiável para dicas de beleza, bem-estar e desenvolvimento pessoal.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-primary transition-colors">
@@ -36,15 +36,34 @@ export default function Footer() {
           {/* Content Links */}
           <div>
             <h3 className="font-semibold mb-4">Conteúdo</h3>
-            <ul className="space-y-2 text-gray-400">
+            <div className="block md:hidden">
+              <div className="flex flex-wrap items-center text-gray-400 text-sm">
+                <Link to="/category/beleza">
+                  <span className="hover:text-white transition-colors cursor-pointer">Beleza</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/category/saude-mental">
+                  <span className="hover:text-white transition-colors cursor-pointer">Saúde Mental</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/deals">
+                  <span className="hover:text-white transition-colors cursor-pointer">Ofertas</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/category/alimentacao-saudavel">
+                  <span className="hover:text-white transition-colors cursor-pointer">Receitas</span>
+                </Link>
+              </div>
+            </div>
+            <ul className="hidden md:block space-y-2 text-gray-400">
               <li>
-                <Link to="/category/comparatives">
-                  <span className="hover:text-white transition-colors cursor-pointer">Comparativos</span>
+                <Link to="/category/beleza">
+                  <span className="hover:text-white transition-colors cursor-pointer">Beleza</span>
                 </Link>
               </li>
               <li>
-                <Link to="/category/reviews">
-                  <span className="hover:text-white transition-colors cursor-pointer">Análises</span>
+                <Link to="/category/saude-mental">
+                  <span className="hover:text-white transition-colors cursor-pointer">Saúde Mental</span>
                 </Link>
               </li>
               <li>
@@ -53,13 +72,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/category/news">
-                  <span className="hover:text-white transition-colors cursor-pointer">Notícias</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/guides">
-                  <span className="hover:text-white transition-colors cursor-pointer">Guias de Compra</span>
+                <Link to="/category/alimentacao-saudavel">
+                  <span className="hover:text-white transition-colors cursor-pointer">Receitas</span>
                 </Link>
               </li>
             </ul>
@@ -68,30 +82,44 @@ export default function Footer() {
           {/* Category Links */}
           <div>
             <h3 className="font-semibold mb-4">Categorias</h3>
-            <ul className="space-y-2 text-gray-400">
+            <div className="block md:hidden">
+              <div className="flex flex-wrap items-center text-gray-400 text-sm">
+                <Link to="/category/beleza/skincare">
+                  <span className="hover:text-white transition-colors cursor-pointer">Skincare</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/category/beleza/maquiagem">
+                  <span className="hover:text-white transition-colors cursor-pointer">Maquiagem</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/category/saude-mental/meditacao-mindfulness">
+                  <span className="hover:text-white transition-colors cursor-pointer">Mindfulness</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/category/alimentacao-saudavel/receitas-fit">
+                  <span className="hover:text-white transition-colors cursor-pointer">Receitas Fit</span>
+                </Link>
+              </div>
+            </div>
+            <ul className="hidden md:block space-y-2 text-gray-400">
               <li>
-                <Link to="/category/smartphones">
-                  <span className="hover:text-white transition-colors cursor-pointer">Smartphones</span>
+                <Link to="/category/beleza/skincare">
+                  <span className="hover:text-white transition-colors cursor-pointer">Skincare</span>
                 </Link>
               </li>
               <li>
-                <Link to="/category/laptops">
-                  <span className="hover:text-white transition-colors cursor-pointer">Laptops</span>
+                <Link to="/category/beleza/maquiagem">
+                  <span className="hover:text-white transition-colors cursor-pointer">Maquiagem</span>
                 </Link>
               </li>
               <li>
-                <Link to="/category/gaming">
-                  <span className="hover:text-white transition-colors cursor-pointer">Gaming</span>
+                <Link to="/category/saude-mental/meditacao-mindfulness">
+                  <span className="hover:text-white transition-colors cursor-pointer">Mindfulness</span>
                 </Link>
               </li>
               <li>
-                <Link to="/category/tvs">
-                  <span className="hover:text-white transition-colors cursor-pointer">TVs</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/category/audio">
-                  <span className="hover:text-white transition-colors cursor-pointer">Áudio</span>
+                <Link to="/category/alimentacao-saudavel/receitas-fit">
+                  <span className="hover:text-white transition-colors cursor-pointer">Receitas Fit</span>
                 </Link>
               </li>
             </ul>
@@ -100,7 +128,30 @@ export default function Footer() {
           {/* Support Links */}
           <div>
             <h3 className="font-semibold mb-4">Suporte</h3>
-            <ul className="space-y-2 text-gray-400">
+            <div className="block md:hidden">
+              <div className="flex flex-wrap items-center text-gray-400 text-sm">
+                <Link to="/contact">
+                  <span className="hover:text-white transition-colors cursor-pointer">Contato</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/about">
+                  <span className="hover:text-white transition-colors cursor-pointer">Sobre Nós</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/privacy">
+                  <span className="hover:text-white transition-colors cursor-pointer">Privacidade</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/terms">
+                  <span className="hover:text-white transition-colors cursor-pointer">Termos</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link to="/disclosure">
+                  <span className="hover:text-white transition-colors cursor-pointer">Afiliados</span>
+                </Link>
+              </div>
+            </div>
+            <ul className="hidden md:block space-y-2 text-gray-400">
               <li>
                 <Link to="/contact">
                   <span className="hover:text-white transition-colors cursor-pointer">Contato</span>
@@ -133,12 +184,12 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © {currentYear} TecReview. Todos os direitos reservados.
+              © {currentYear} EllaTrend. Todos os direitos reservados.
             </p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0 text-sm text-gray-400">
               <span>Feito com</span>
               <span className="text-red-500">♥</span>
-              <span>para entusiastas de tecnologia</span>
+              <span>para mulheres que se cuidam</span>
             </div>
           </div>
         </div>

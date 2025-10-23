@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Microchip, Menu, Search, X } from "lucide-react";
+import { Heart, Menu, Search, X } from "lucide-react";
 
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -11,9 +11,9 @@ export default function Header() {
 
   const navigation = [
     { name: "Início", href: "/" },
-    { name: "Comparativos", href: "/comparativos" },
-    { name: "Ofertas", href: "/deals" },
-    { name: "Categorias", href: "/categories" },
+    { name: "Beleza", href: "/beleza" },
+    { name: "Saúde Mental", href: "/saude-mental" },
+    { name: "Alimentação", href: "/alimentacao" },
   ];
 
   return (
@@ -23,8 +23,10 @@ export default function Header() {
           {/* Logo */}
           <Link to="/">
             <div className="flex-shrink-0 flex items-center cursor-pointer">
-              <Microchip className="h-8 w-8 text-primary mr-2" />
-              <span className="text-2xl font-bold text-gray-900">TecReview</span>
+              <Heart className="h-8 w-8 text-pink-500 mr-2" />
+              <div className="flex items-center">
+                <span className="text-4xl" style={{ fontFamily: 'Dancing Script, cursive', color: '#581C87' }}>EllaTrend</span>
+              </div>
             </div>
           </Link>
 
@@ -33,7 +35,7 @@ export default function Header() {
             <div className="ml-10 flex items-baseline space-x-4">
               {navigation.map((item) => (
                 <Link key={item.name} to={item.href}>
-                  <span className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors cursor-pointer">
+                  <span className="text-gray-600 hover:text-pink-500 px-3 py-2 text-sm font-medium transition-colors cursor-pointer">
                     {item.name}
                   </span>
                 </Link>
@@ -47,7 +49,7 @@ export default function Header() {
               variant="ghost"
               size="sm"
               onClick={() => setSearchOpen(true)}
-              className="text-gray-600 hover:text-primary"
+              className="text-gray-600 hover:text-pink-500"
             >
               <Search className="h-4 w-4" />
             </Button>
@@ -58,20 +60,23 @@ export default function Header() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="md:hidden text-gray-600 hover:text-primary"
+                  className="md:hidden text-gray-600 hover:text-pink-500"
                 >
                   <Menu className="h-4 w-4" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-64">
                 <div className="flex items-center mb-8">
-                  <Microchip className="h-6 w-6 text-primary mr-2" />
-                  <span className="text-xl font-bold text-gray-900">TecReview</span>
+                  <Heart className="h-6 w-6 text-pink-500 mr-2" />
+                  <div className="flex items-center">
+                    <span className="text-2xl font-serif font-light text-gray-900">Ella</span>
+                    <span className="text-2xl font-bold text-purple-600 ml-1">Trend</span>
+                  </div>
                 </div>
                 <div className="space-y-4">
                   {navigation.map((item) => (
                     <Link key={item.name} to={item.href}>
-                      <div className="block text-gray-600 hover:text-primary py-2 text-sm font-medium cursor-pointer">
+                      <div className="block text-gray-600 hover:text-pink-500 py-2 text-sm font-medium cursor-pointer">
                         {item.name}
                       </div>
                     </Link>
@@ -91,7 +96,7 @@ export default function Header() {
               <Search className="h-5 w-5 text-gray-400" />
               <Input
                 type="text"
-                placeholder="Search for products, articles..."
+                placeholder="Buscar dicas de beleza, receitas, bem-estar..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="flex-1 text-lg border-none focus:ring-0"
@@ -107,7 +112,7 @@ export default function Header() {
             </div>
             {searchQuery && (
               <div className="text-sm text-gray-500">
-                Search functionality coming soon...
+                Funcionalidade de busca em breve...
               </div>
             )}
           </div>
