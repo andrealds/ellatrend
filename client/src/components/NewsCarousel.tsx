@@ -5,14 +5,14 @@ import { Artigo } from '@/types/artigos';
 import { Link } from 'wouter';
 
 const WellnessCarousel = () => {
-  const { data: artigosData, loading } = useStaticData<{ artigos: Artigo[] }>('artigos-beleza');
+  const { data: artigosData, loading } = useStaticData<{ artigosCarrossel: Artigo[] }>('artigos-por-horario');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // Filtrar apenas artigos em destaque
-  const artigosDestaque = artigosData?.artigos.filter(artigo => artigo.destaque === true) || [];
+  // Usar artigos específicos do carrossel
+  const artigosDestaque = artigosData?.artigosCarrossel || [];
 
   useEffect(() => {
     if (!isAutoPlay || artigosDestaque.length === 0) return;
@@ -93,7 +93,7 @@ const WellnessCarousel = () => {
             </h2>
             <p className="text-gray-600 flex items-center gap-2 hidden sm:flex">
               <TrendingUp size={18} />
-              Dicas de beleza, bem-estar e desenvolvimento pessoal
+              Dicas de beleza, bem-estar e alimentação
             </p>
           </div>
           <button
@@ -192,14 +192,24 @@ const WellnessCarousel = () => {
           {/* Thumbnails */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
             {artigosDestaque.map((item, index) => (
-              <button
+              <Link
                 key={item.id}
-                onClick={() => goToSlide(index)}
-                className={`relative group overflow-hidden rounded-xl transition-all ${
+                to={`/artigo/${item.slug}`}
+                className={`relative group overflow-hidden rounded-xl transition-all cursor-pointer ${
                   index === currentIndex 
                     ? 'ring-4 ring-pink-500 scale-105' 
                     : 'hover:scale-105'
                 }`}
+                onClick={() => {
+                  // Scroll para o topo apenas no mobile
+                  if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                      window.scrollTo(0, 0);
+                      document.documentElement.scrollTop = 0;
+                      document.body.scrollTop = 0;
+                    }, 100);
+                  }
+                }}
               >
                 <div className="aspect-video">
                   <img
@@ -218,7 +228,7 @@ const WellnessCarousel = () => {
                     </div>
                   </div>
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
         </div>

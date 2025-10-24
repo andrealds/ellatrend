@@ -1,11 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Eye, Star, Filter } from "lucide-react";
+import { Calendar, Eye, Star, Filter, Apple } from "lucide-react";
 import { useStaticData } from "@/hooks/useStaticData";
 import { Artigo } from "@/types/artigos";
 // import FilterBar from "@/components/beleza/FilterBar";
@@ -17,6 +17,15 @@ export default function Artigos() {
   const [activeFilter, setActiveFilter] = useState('todos');
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 12;
+
+  // Scroll para o topo quando a página carregar
+  useEffect(() => {
+    // Scroll instantâneo para garantir que funcione no mobile
+    window.scrollTo(0, 0);
+    // Força o scroll para o topo
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
 
   // CSS para animações
   const animationStyles = `
@@ -69,9 +78,7 @@ export default function Artigos() {
       id: 'alimentacao',
       label: 'Alimentação',
       icon: (isActive: boolean) => (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6"></path>
-        </svg>
+        <Apple className="w-5 h-5" />
       )
     }
   ];
@@ -110,6 +117,27 @@ export default function Artigos() {
   const handleMatchChange = (filter: string) => {
     setActiveFilter(filter);
     setCurrentPage(1);
+    // Scroll instantâneo para mobile, suave para desktop
+    if (window.innerWidth <= 768) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Scroll para o topo quando mudar de página
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll instantâneo para mobile, suave para desktop
+    if (window.innerWidth <= 768) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   if (loading) {
@@ -181,7 +209,14 @@ export default function Artigos() {
               <button
                 key={filter.id}
                 onClick={() => handleMatchChange(filter.id)}
-                className={`transition-all duration-300 ease-in-out py-2 px-4 sm:py-3 sm:px-8 rounded-full font-semibold flex items-center gap-2 text-sm sm:text-base ${
+                onTouchStart={(e) => {
+                  // Prevenir evento duplo no mobile
+                  if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    handleMatchChange(filter.id);
+                  }
+                }}
+                className={`transition-all duration-300 ease-in-out py-3 px-6 sm:py-3 sm:px-8 rounded-full font-semibold flex items-center gap-2 text-sm sm:text-base min-h-[44px] ${
                   activeFilter === filter.id
                     ? 'bg-gray-800 text-white shadow-lg'
                     : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
@@ -280,7 +315,7 @@ export default function Artigos() {
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
-            onPageChange={setCurrentPage}
+            onPageChange={handlePageChange}
           />
         )}
       </main>

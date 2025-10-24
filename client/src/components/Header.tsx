@@ -3,17 +3,18 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Heart, Menu, Search, X } from "lucide-react";
+import { Heart, Menu, Search, X, Home, FileText, Heart as HeartIcon, Brain, Apple } from "lucide-react";
 
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const navigation = [
-    { name: "Início", href: "/" },
-    { name: "Beleza", href: "/beleza" },
-    { name: "Saúde Mental", href: "/saude-mental" },
-    { name: "Alimentação", href: "/alimentacao" },
+    { name: "Início", href: "/", icon: Home },
+    { name: "Artigos", href: "/artigos", icon: FileText },
+    { name: "Beleza", href: "/beleza", icon: HeartIcon },
+    { name: "Saúde Mental", href: "/saude-mental", icon: Brain },
+    { name: "Alimentação", href: "/alimentacao", icon: Apple },
   ];
 
   return (
@@ -35,8 +36,9 @@ export default function Header() {
             <div className="ml-10 flex items-baseline space-x-4">
               {navigation.map((item) => (
                 <Link key={item.name} to={item.href}>
-                  <span className="text-gray-600 hover:text-pink-500 px-3 py-2 text-sm font-medium transition-colors cursor-pointer">
-                    {item.name}
+                  <span className="flex items-center gap-2 text-gray-600 hover:text-pink-500 px-4 py-3 text-base font-semibold transition-all duration-300 ease-in-out cursor-pointer rounded-lg hover:bg-pink-50 hover:shadow-sm">
+                    <item.icon size={18} />
+                    <span>{item.name}</span>
                   </span>
                 </Link>
               ))}
@@ -76,8 +78,9 @@ export default function Header() {
                 <div className="space-y-4">
                   {navigation.map((item) => (
                     <Link key={item.name} to={item.href}>
-                      <div className="block text-gray-600 hover:text-pink-500 py-2 text-sm font-medium cursor-pointer">
-                        {item.name}
+                      <div className="flex items-center gap-3 text-gray-600 hover:text-pink-500 py-3 px-4 text-base font-semibold cursor-pointer rounded-lg hover:bg-pink-50 transition-all duration-300 ease-in-out">
+                        <item.icon size={20} />
+                        <span>{item.name}</span>
                       </div>
                     </Link>
                   ))}

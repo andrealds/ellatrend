@@ -10,6 +10,7 @@ const WellnessStories = () => {
   const { data: storiesBeleza } = useStaticData<StoriesData>('stories-beleza');
   const { data: storiesAlimentacao } = useStaticData<StoriesData>('stories-alimentacao');
   const { data: storiesSaudeMental } = useStaticData<StoriesData>('stories-saude-mental');
+  
 
   // Combinar todos os stories em uma estrutura unificada
   const stories = [
@@ -123,7 +124,7 @@ const WellnessStories = () => {
   const getStoryLabel = (title: string) => {
     if (title.includes('Como Combinar')) return 'Dica Express';
     if (title.includes('Proporção')) return 'Truque Infalível';
-    if (title.includes('Guarda-Roupa de Transição')) return 'Mudança de Estação';
+    if (title.includes('Guarda-Roupa de Gustão')) return 'Mudança de Estação';
     if (title.includes('Acessórios')) return 'Investimento Certo';
     if (title.includes('Erro que')) return 'Atenção!';
     if (title.includes('Arrume Seu')) return 'Organização';
@@ -144,7 +145,16 @@ const WellnessStories = () => {
     if (title.includes('Grãos Integrais')) return 'Carboidratos Inteligentes';
     if (title.includes('Gorduras Saudáveis')) return 'Gorduras Boas';
     if (title.includes('Comer Consciente')) return 'Mindfulness';
-    return 'Dica Express';
+    
+    // Labels para artigos baseados no horário
+    const hour = new Date().getHours();
+    if (hour >= 6 && hour < 12) {
+      return 'Dica Matinal';
+    } else if (hour >= 12 && hour < 18) {
+      return 'Dica da Tarde';
+    } else {
+      return 'Dica Noturna';
+    }
   };
 
   const renderStoryContent = (story: any) => {
@@ -159,10 +169,10 @@ const WellnessStories = () => {
     if (story.backgroundColor) {
       // Story 1: Como Combinar Estampas - Grid de dicas
       if (story.title.includes('Como Combinar')) {
-      const tips = content.split('. ').filter(tip => tip.trim());
+      const tips = content.split('. ').filter((tip: string) => tip.trim());
       return (
         <div className="flex flex-col gap-3">
-          {tips.map((tip, index) => (
+          {tips.map((tip: string, index: number) => (
             <div key={index} className="bg-white/15 backdrop-blur-xl border-2 border-white/25 rounded-2xl p-3 sm:p-5 flex items-center gap-3 sm:gap-4 hover:bg-white/20 transition-all duration-300">
               <div className="bg-white/25 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
                 {index === 0 ? '🎨' : index === 1 ? '📏' : index === 2 ? '⚖️' : '✨'}
@@ -194,10 +204,10 @@ const WellnessStories = () => {
 
     // Story 3: Guarda-Roupa de Transição - Lista numerada
     if (story.title.includes('Guarda-Roupa de Transição')) {
-      const steps = content.split('), ').filter(step => step.trim());
+      const steps = content.split('), ').filter((step: string) => step.trim());
       return (
         <div className="flex flex-col gap-3">
-          {steps.map((step, index) => (
+          {steps.map((step: string, index: number) => (
             <div key={index} className="bg-white/20 backdrop-blur-xl border-2 border-white/35 rounded-2xl p-4 hover:bg-white/25 transition-all duration-300">
               <div className="pt-1">
                 <strong className="text-white text-base block mb-1 font-bold">
@@ -326,10 +336,10 @@ const WellnessStories = () => {
 
     // Story 10: Investimento Inteligente - Lista numerada
     if (story.title.includes('Investimento Inteligente')) {
-      const tips = content.split('. ').filter(tip => tip.trim());
+      const tips = content.split('. ').filter((tip: string) => tip.trim());
       return (
         <div className="flex flex-col gap-3">
-          {tips.map((tip, index) => (
+          {tips.map((tip: string, index: number) => (
             <div key={index} className="bg-white/20 backdrop-blur-xl border-2 border-white/35 rounded-2xl p-3 sm:p-4 hover:bg-white/25 transition-all duration-300">
               <div className="pt-1">
                 <strong className="text-white text-sm sm:text-base block mb-1 font-bold">
@@ -347,10 +357,10 @@ const WellnessStories = () => {
 
     // Story 11: Look Corporativo - Lista de dicas
     if (story.title.includes('Look Corporativo')) {
-      const tips = content.split(', ').filter(tip => tip.trim());
+      const tips = content.split(', ').filter((tip: string) => tip.trim());
       return (
         <div className="flex flex-col gap-3">
-          {tips.map((tip, index) => (
+          {tips.map((tip: string, index: number) => (
             <div key={index} className="bg-white/20 backdrop-blur-xl border-2 border-white/35 rounded-2xl p-3 sm:p-4 hover:bg-white/25 transition-all duration-300">
               <div className="pt-1">
                 <span className="text-white text-base sm:text-lg leading-relaxed">
@@ -467,7 +477,7 @@ const WellnessStories = () => {
           key={`${activeCategory}-${activeStory}`}
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            background: currentStory.image ? `url(${currentStory.image})` : (currentStory.backgroundColor || 'transparent'),
+            background: currentStory.image ? `url(${currentStory.image})` : ((currentStory as any).backgroundColor || 'transparent'),
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'

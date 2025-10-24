@@ -1,4 +1,4 @@
-import { useParams } from "wouter";
+import { useParams, Link } from "wouter";
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -33,6 +33,47 @@ export default function Post() {
   
   const loading = loadingArtigosBeleza || loadingArtigosSaude || loadingArtigosAlimentacao;
   const error = errorArtigosBeleza || errorArtigosSaude || errorArtigosAlimentacao;
+
+  // Função para misturar artigos de forma aleatória baseada na data
+  const shuffleArray = <T>(array: T[], seed?: number): T[] => {
+    const shuffled = [...array];
+    const randomSeed = seed || Math.floor(Date.now() / (1000 * 60 * 60 * 24)); // Muda a cada dia
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor((randomSeed + i) % (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Gerar recomendações dinâmicas baseadas na categoria
+  const getRecomendacoes = () => {
+    if (!post) return [];
+
+    const categoriaAtual = post.categoria;
+    
+    // Filtrar artigos da mesma categoria, excluindo o artigo atual
+    const artigosCategoria = allArtigos.filter(artigo => 
+      artigo.categoria === categoriaAtual && 
+      artigo.slug !== post.slug
+    );
+
+    // Se não houver artigos da categoria, pegar de outras categorias
+    const artigosParaRecomendar = artigosCategoria.length > 0 
+      ? artigosCategoria 
+      : allArtigos.filter(artigo => artigo.slug !== post.slug);
+
+    // Criar seed baseado na data atual
+    const today = new Date().toDateString();
+    const dataHash = today.split('').reduce((a, b) => {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0);
+
+    // Selecionar 3 artigos aleatórios baseados na data
+    return shuffleArray(artigosParaRecomendar, dataHash).slice(0, 3);
+  };
+
+  const artigosRecomendados = getRecomendacoes();
 
   if (loading) {
     return (
@@ -109,7 +150,7 @@ export default function Post() {
       `}</style>
       <Header />
       
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20 relative">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-8 pt-8 sm:pt-20 relative">
         <article>
           {/* Header - FORA do card */}
           <header className="mb-8 fade-in-up header-animate">
@@ -131,34 +172,39 @@ export default function Post() {
               </p>
             )}
             
-            <div className="flex items-center justify-between border-b border-gray-200 pb-6">
-              <div className="flex items-center space-x-6 text-base text-gray-500">
-                <div className="flex items-center space-x-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>
-                    {new Date(post.dataPublicacao).toLocaleDateString('pt-BR')}
-                  </span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Eye className="h-4 w-4" />
-                  <span>{post.visualizacoes?.toLocaleString() || '0'} visualizações</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Heart className="h-4 w-4" />
-                  <span>{post.curtidas || '0'} curtidas</span>
-                </div>
-                {post.autor && (
+            <div className="border-b border-gray-200 pb-6">
+              {/* Layout flexível para desktop e mobile */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                {/* Primeira linha - Data, Visualizações, Curtidas */}
+                <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm sm:text-base text-gray-500">
                   <div className="flex items-center space-x-2">
-                    <span className="text-gray-500">Por:</span>
-                    <span className="font-medium text-gray-700">{post.autor}</span>
+                    <Calendar className="h-4 w-4" />
+                    <span>
+                      {new Date(post.dataPublicacao).toLocaleDateString('pt-BR')}
+                    </span>
                   </div>
-                )}
+                  <div className="flex items-center space-x-2">
+                    <Eye className="h-4 w-4" />
+                    <span>{post.visualizacoes?.toLocaleString() || '0'} visualizações</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Heart className="h-4 w-4" />
+                    <span>{post.curtidas || '0'} curtidas</span>
+                  </div>
+                  {post.autor && (
+                    <div className="flex items-center space-x-2 text-sm sm:text-base text-gray-500">
+                      <span className="text-gray-500">Por:</span>
+                      <span className="font-medium text-gray-700">{post.autor}</span>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Botão Compartilhar */}
+                <Button variant="outline" size="sm" className="self-start sm:self-auto">
+                  <Share2 className="h-4 w-4 mr-2" />
+                  Compartilhar
+                </Button>
               </div>
-              
-              <Button variant="outline" size="sm">
-                <Share2 className="h-4 w-4 mr-2" />
-                Compartilhar
-              </Button>
             </div>
           </header>
 
@@ -297,47 +343,36 @@ export default function Post() {
           )}
 
           {/* Artigos Relacionados */}
-          <section className="max-w-5xl mx-auto mt-16 px-4">
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-              Você também pode gostar
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              
-              {/* Card de Artigo Relacionado 1 */}
-              <a href="#" className="group bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 fade-in-up related-card-1">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Artigo 1" className="w-full h-48 object-cover" />
-                <div className="p-5">
-                  <span className="text-sm font-semibold text-pink-600">Alimentação</span>
-                  <h3 className="text-lg font-semibold text-gray-800 mt-1 group-hover:text-pink-500 transition-colors">
-                    Smoothie Verde Energético: Receita que Acelera o Metabolismo
-                  </h3>
-                </div>
-              </a>
-
-              {/* Card de Artigo Relacionado 2 */}
-              <a href="#" className="group bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 fade-in-up related-card-2">
-                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Artigo 2" className="w-full h-48 object-cover" />
-                <div className="p-5">
-                  <span className="text-sm font-semibold text-pink-600">Beleza</span>
-                  <h3 className="text-lg font-semibold text-gray-800 mt-1 group-hover:text-pink-500 transition-colors">
-                    5 Dicas para Cabelos Mais Saudáveis e Brilhantes
-                  </h3>
-                </div>
-              </a>
-
-              {/* Card de Artigo Relacionado 3 */}
-              <a href="#" className="group bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 fade-in-up related-card-3">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Artigo 3" className="w-full h-48 object-cover" />
-                <div className="p-5">
-                  <span className="text-sm font-semibold text-pink-600">Desenvolvimento</span>
-                  <h3 className="text-lg font-semibold text-gray-800 mt-1 group-hover:text-pink-500 transition-colors">
-                    Rotina Matinal para Mulheres Produtivas: 7 Hábitos que Transformam o Dia
-                  </h3>
-                </div>
-              </a>
-
-            </div>
-          </section>
+          {artigosRecomendados.length > 0 && (
+            <section className="max-w-5xl mx-auto mt-16 px-4">
+              <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
+                Você também pode gostar
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {artigosRecomendados.map((artigo, index) => (
+                  <Link 
+                    key={artigo.slug} 
+                    to={`/artigo/${artigo.slug}`} 
+                    className={`group bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 fade-in-up related-card-${index + 1}`}
+                  >
+                    <img 
+                      src={artigo.imagemDestaque || artigo.imagem || "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"} 
+                      alt={artigo.titulo} 
+                      className="w-full h-48 object-cover" 
+                    />
+                    <div className="p-5">
+                      <span className="text-sm font-semibold text-pink-600">
+                        {artigo.categoria}
+                      </span>
+                      <h3 className="text-lg font-semibold text-gray-800 mt-1 group-hover:text-pink-500 transition-colors line-clamp-2">
+                        {artigo.titulo}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
         </article>
       </main>
       

@@ -4,18 +4,18 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Eye, Star, LayoutGrid } from "lucide-react";
 import { Link } from "wouter";
 import { useStaticData } from "@/hooks/useStaticData";
-import { Artigo } from "@/types/artigos";
+import { ArtigoUniversal } from "@/types";
 
 export default function LatestArticles() {
-  const { data, loading, error } = useStaticData<{ artigos: Artigo[] }>("artigos-beleza");
+  const { data, loading, error } = useStaticData<{ artigosConteudo: ArtigoUniversal[] }>("artigos-por-horario");
 
-  // Filtrar apenas os artigos e limitar a 6
-  const posts = data?.artigos.slice(0, 6) || [];
+  // Filtrar apenas os artigos e limitar a 10
+  const posts = data?.artigosConteudo.slice(0, 10) || [];
 
   if (loading) {
     return (
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <Card key={i} className="animate-pulse">
             <div className="h-48 bg-gray-300 rounded-t-lg"></div>
             <CardContent className="p-6">
@@ -64,7 +64,22 @@ export default function LatestArticles() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-5xl mx-auto">
           {posts.map((post) => (
-            <Card key={post.id} className="card-hover overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Link 
+              key={post.id} 
+              to={`/artigo/${post.slug}`} 
+              className="block sm:block"
+              onClick={() => {
+                // Scroll para o topo apenas no mobile
+                if (window.innerWidth <= 768) {
+                  setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                  }, 100);
+                }
+              }}
+            >
+              <Card className="card-hover overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
               <div className="relative aspect-video">
                 {post.imagemDestaque ? (
                   <img
@@ -123,6 +138,7 @@ export default function LatestArticles() {
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
         
