@@ -37,7 +37,7 @@ export default function FeaturedDeals() {
             Ofertas em Destaque
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            As melhores ofertas de tecnologia, cuidadosamente selecionadas e atualizadas diariamente.
+            As melhores ofertas de beleza e bem-estar, cuidadosamente selecionadas e atualizadas diariamente.
           </p>
         </div>
 

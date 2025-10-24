@@ -12,37 +12,6 @@ export interface ConfigSEO {
   keywords: string[];
 }
 
-// Configurações de Loja de Afiliado
-export interface LojaAfiliadoConfig {
-  associateId?: string;
-  partnerId?: string;
-  affiliateId?: string;
-  campaignId?: string;
-  ativo: boolean;
-}
-
-// Configurações de Afiliados
-export interface ConfigAfiliados {
-  lojas: {
-    amazon: LojaAfiliadoConfig;
-    magalu: LojaAfiliadoConfig;
-    kabum: LojaAfiliadoConfig;
-    americanas: LojaAfiliadoConfig;
-    mercadolivre: LojaAfiliadoConfig;
-    shopee: LojaAfiliadoConfig;
-    shein: LojaAfiliadoConfig;
-    aliexpress: LojaAfiliadoConfig;
-    ponto: LojaAfiliadoConfig;
-    extra: LojaAfiliadoConfig;
-  };
-  configuracoes: {
-    abrirNovaAba: boolean;
-    usarNofollow: boolean;
-    usarUtmTracking: boolean;
-    campaignSource: string;
-    campaignMedium: string;
-  };
-}
 
 // Configurações de Redes Sociais
 export interface ConfigRedesSociais {
@@ -91,8 +60,6 @@ export interface ConfiguracoesSite {
   // SEO
   seo: ConfigSEO;
   
-  // Afiliados
-  afiliados: ConfigAfiliados;
   
   // Redes Sociais
   redesSociais: ConfigRedesSociais;
@@ -114,36 +81,9 @@ export interface ConfiguracoesSite {
 export interface ConfiguracoesFormData {
   gerais?: Partial<ConfigGerais>;
   seo?: Partial<ConfigSEO>;
-  afiliados?: Partial<ConfigAfiliados>;
   redesSociais?: Partial<ConfigRedesSociais>;
   newsletter?: Partial<ConfigNewsletter>;
   analytics?: Partial<ConfigAnalytics>;
   performance?: Partial<ConfigPerformance>;
   seguranca?: Partial<ConfigSeguranca>;
-}
-
-// Interface para lojas de afiliado (usado em componentes)
-export interface LojaAfiliado {
-  nome: string;
-  slug: string;
-  ativo: boolean;
-  config: {
-    associateId?: string;
-    partnerId?: string;
-    affiliateId?: string;
-    trackingId?: string;
-    campaignId?: string;
-  };
-  pattern: string;
-}
-
-// Interface para links de afiliado gerados
-export interface LinkAfiliado {
-  originalUrl: string;
-  affiliateUrl: string;
-  loja: string;
-  produtoId?: string;
-  categoria?: string;
-  timestamp: Date;
-  cliques?: number;
 }

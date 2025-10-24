@@ -56,10 +56,10 @@ export default function NewsletterSignup() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="text-white">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Fique Atualizado com Notícias Tech
+            Fique Atualizada com Nossas Dicas
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Receba as melhores ofertas, lançamentos e reviews exclusivos direto no seu email. Sem spam, apenas conteúdo de qualidade.
+            Receba as melhores dicas de beleza, moda e bem-estar direto no seu email. Sem spam, apenas conteúdo de qualidade para mulheres.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
@@ -115,7 +115,7 @@ export default function NewsletterSignup() {
                   }
                   className="border-white"
                 />
-                <span>Lançamentos de produtos</span>
+                <span>Dicas de alimentação</span>
               </label>
             </div>
 

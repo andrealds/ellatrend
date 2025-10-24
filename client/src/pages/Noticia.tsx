@@ -186,7 +186,7 @@ export default function NoticiaPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Gostou da notícia?</h3>
-                  <p className="text-blue-100">Fique por dentro das últimas novidades em tecnologia</p>
+                  <p className="text-blue-100">Fique por dentro das últimas dicas de bem-estar</p>
                 </div>
                 <Button variant="outline" className="text-primary border-white hover:bg-white transition-colors duration-300">
                   <ExternalLink className="h-4 w-4 mr-2" />

@@ -311,21 +311,56 @@ const WellnessStories = () => {
       title: 'Saúde Mental',
       stories: [
         {
-          title: 'Look Natural para o Dia',
-          content: 'Tutorial rápido para uma maquiagem natural e elegante',
-          image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1080&h=1920&fit=crop',
-          type: 'tutorial',
-          duration: '8 min'
+          title: 'Respiração para Ansiedade',
+          content: 'DICA: Técnica 4-7-8: Inspire 4 segundos, segure 7 segundos, expire 8 segundos. Repita 4 vezes. Acalma o sistema nervoso e reduz ansiedade instantaneamente.',
+          image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1080&h=1920&fit=crop',
+          type: 'wellness'
         },
         {
-          title: 'Maquiagem para Videochamadas',
-          content: 'Dicas para ficar linda nas reuniões online',
-          image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1080&h=1920&fit=crop',
-          type: 'tutorial',
+          title: 'Gratidão Diária',
+          content: 'DICA: Escreva 3 coisas pelas quais é grata toda manhã. Pode ser simples: sol, família, saúde. A gratidão rewire o cérebro para focar no positivo.',
+          image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=1920&fit=crop',
+          type: 'wellness'
+        },
+        {
+          title: 'Boundaries Saudáveis',
+          content: 'DICA: Aprenda a dizer "não" sem culpa. Proteja seu tempo e energia. Boundaries não são egoísmo, são autocuidado necessário para bem-estar mental.',
+          image: 'https://images.unsplash.com/photo-1515378791036-0648a814c963?w=1080&h=1920&fit=crop',
+          type: 'wellness'
+        },
+        {
+          title: 'Mindfulness Simples',
+          content: 'DICA: Pause 5 vezes ao dia e observe: O que sinto? O que penso? O que vejo? Essa consciência presente reduz estresse e aumenta clareza mental.',
+          image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1080&h=1920&fit=crop',
+          type: 'wellness'
+        },
+        {
+          title: 'Sono de Qualidade',
+          content: 'DICA: Crie rotina noturna: sem telas 1h antes de dormir, quarto escuro e fresco, horário fixo. Sono reparador é fundamental para saúde mental.',
+          image: 'https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?w=1080&h=1920&fit=crop',
+          type: 'wellness'
+        },
+        {
+          title: 'Autocompaixão',
+          content: 'DICA: Trate-se como trataria uma amiga querida. Erros são humanos. Seja gentil consigo mesma. Autocompaixão fortalece resiliência emocional.',
+          image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1080&h=1920&fit=crop',
+          type: 'wellness'
+        },
+        {
+          title: 'Movimento e Humor',
+          content: 'DICA: Exercício libera endorfinas naturais. Caminhe 10 min ao ar livre, dance, alongue. Movimento é antidepressivo natural e melhora autoestima.',
+          image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=1920&fit=crop',
+          type: 'wellness'
+        },
+        {
+          title: 'Conexão Social',
+          content: 'DICA: Mantenha conexões significativas. Chame uma amiga, participe de grupos, seja voluntária. Conexão social é essencial para saúde mental.',
+          image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1080&h=1920&fit=crop',
+          type: 'wellness'
         }
       ],
-      color: 'from-pink-500 to-purple-500',
-      backgroundImage: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop'
+      color: 'from-green-400 to-teal-500',
+      backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop'
     }
   ];
 
