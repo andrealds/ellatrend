@@ -93,3 +93,11 @@ export {
   CATEGORIAS_ARTIGO, 
   STATUS_ARTIGO 
 } from './artigos';
+
+// Export types from stories
+export type { 
+  Story, 
+  StoryCategory, 
+  StoriesData, 
+  StoriesResponse 
+} from './stories';

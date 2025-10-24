@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
-type DataType = 'ofertas' | 'categorias' | 'artigos-beleza' | 'artigos-saude-mental' | 'artigos-alimentacao' | 'todos-os-artigos';
+type DataType = 'ofertas' | 'categorias' | 'artigos-beleza' | 'artigos-saude-mental' | 'artigos-alimentacao' | 'todos-os-artigos' | 'stories-moda' | 'stories-beleza' | 'stories-alimentacao' | 'stories-saude-mental';
 
 type JsonData = {
   ofertas?: any[];
   categorias?: any[];
   artigos?: any[];
+  stories?: any[];
 };
 
   const dataMap: Record<DataType, string[]> = {
@@ -14,7 +15,11 @@ type JsonData = {
     'artigos-beleza': ['/data/artigos/artigos-beleza.json'],
     'artigos-saude-mental': ['/data/artigos/artigos-saude-mental.json'],
     'artigos-alimentacao': ['/data/artigos/artigos-alimentacao.json'],
-    'todos-os-artigos': ['/data/artigos/artigos-beleza.json', '/data/artigos/artigos-saude-mental.json', '/data/artigos/artigos-alimentacao.json']
+    'todos-os-artigos': ['/data/artigos/artigos-beleza.json', '/data/artigos/artigos-saude-mental.json', '/data/artigos/artigos-alimentacao.json'],
+    'stories-moda': ['/data/stories/stories-moda.json'],
+    'stories-beleza': ['/data/stories/stories-beleza.json'],
+    'stories-alimentacao': ['/data/stories/stories-alimentacao.json'],
+    'stories-saude-mental': ['/data/stories/stories-saude-mental.json']
   };
 
 export function useStaticData<T>(type: DataType) {
@@ -26,7 +31,7 @@ export function useStaticData<T>(type: DataType) {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const allData = { [type]: [] } as JsonData;
+        const allData: JsonData = {};
 
         // Buscar dados de todos os arquivos do tipo
         const files = dataMap[type];
@@ -50,6 +55,12 @@ export function useStaticData<T>(type: DataType) {
           if (fileData['artigos']) {
             allData.artigos = [...(allData.artigos || []), ...fileData['artigos']];
           }
+        } 
+        // Para stories, procurar por 'stories' no JSON
+        else if (type.startsWith('stories-')) {
+          if (fileData['stories']) {
+            allData.stories = [...(allData.stories || []), ...fileData['stories']];
+          }
         } else {
           if (fileData[type]) {
             allData[type] = [...(allData[type] || []), ...fileData[type]];
@@ -63,6 +74,10 @@ export function useStaticData<T>(type: DataType) {
           if (!allData.artigos || allData.artigos.length === 0) {
             throw new Error(`Nenhum dado encontrado para ${type}`);
           }
+        } else if (type.startsWith('stories-')) {
+          if (!allData.stories || allData.stories.length === 0) {
+            throw new Error(`Nenhum dado encontrado para ${type}`);
+          }
         } else {
           if (!allData[type] || allData[type].length === 0) {
             throw new Error(`Nenhum dado encontrado para ${type}`);
@@ -72,6 +87,9 @@ export function useStaticData<T>(type: DataType) {
         // Para artigos-beleza, artigos-saude-mental, artigos-alimentacao e todos-os-artigos, retornar com a chave 'artigos'
         if (type === 'artigos-beleza' || type === 'artigos-saude-mental' || type === 'artigos-alimentacao' || type === 'todos-os-artigos') {
           const result = { artigos: allData.artigos } as T;
+          setData(result);
+        } else if (type.startsWith('stories-')) {
+          const result = { stories: allData.stories } as T;
           setData(result);
         } else {
           setData(allData as T);

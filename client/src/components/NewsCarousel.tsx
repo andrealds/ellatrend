@@ -83,7 +83,7 @@ const WellnessCarousel = () => {
   const currentArtigo = artigosDestaque[currentIndex];
 
   return (
-    <div className="w-full py-6 sm:py-12 lg:py-20 relative">
+    <div className="w-full py-2 sm:py-6 lg:py-8 relative">
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -210,11 +210,9 @@ const WellnessCarousel = () => {
                       e.currentTarget.src = 'https://images.unsplash.com/photo-1553530666-ba11a7ef3b44?w=1200&q=80';
                     }}
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/80 to-transparent ${
-                    index === currentIndex ? 'opacity-70' : 'opacity-0 group-hover:opacity-70'
-                  } transition-opacity`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent">
                     <div className="absolute bottom-2 left-2 right-2">
-                      <span className="text-white text-xs font-semibold line-clamp-2">
+                      <span className="text-white text-xs font-bold line-clamp-2 drop-shadow-lg">
                         {item.titulo}
                       </span>
                     </div>

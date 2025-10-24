@@ -1,0 +1,132 @@
+{
+  "stories": [
+    {
+      "id": "makeup-1",
+      "title": "Base Perfeita",
+      "content": "DICA: Prepare a pele com hidratante, use primer para uniformizar, aplique a base com pincel ou esponja úmida, finalize com pó translúcido. Para cobertura extra, use corretivo líquido nas áreas que precisam.",
+      "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1080&h=1920&fit=crop",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-2",
+      "title": "Olhos Definidos",
+      "content": "DICA: Use sombra clara na pálpebra, sombra média no côncavo, sombra escura no canto externo. Aplique delineador líquido na linha d'água superior, finalize com máscara de cílios em camadas.",
+      "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1080&h=1920&fit=crop",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-3",
+      "title": "Batom Duradero",
+      "content": "DICA: Hidrate os lábios antes, use lápis labial para contornar, aplique o batom com pincel para melhor fixação, retire o excesso com papel, aplique uma segunda camada. Para brilho, contra com gloss.",
+      "image": "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1080&h=1920&fit=crop",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-4",
+      "title": "Contorno Natural",
+      "content": "DICA: Use cor 2 tons mais escura que sua pele, aplique nas laterais do nariz, nas maçãs do rosto e no maxilar. Misture bem com esponja úmida para efeito natural. Finalize com pó para fixar.",
+      "image": "https://images.unsplash.com/photo-1620464003286-a5b0d79f32c2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=736",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-5",
+      "title": "Blush Perfeito",
+      "content": "DICA: Sorria para encontrar as maçãs do rosto, aplique o blush em movimento circular com pincel, comece suave e vá intensificando. Para rosto redondo, aplique nas laterais. Para rosto alongado, aplique nas maçãs.",
+      "image": "https://images.unsplash.com/photo-1582576192532-06353147fcbf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-6",
+      "title": "Iluminador Glow",
+      "content": "DICA: Aplique nos pontos altos do rosto: topo das maçãs, ponte do nariz, centro da testa e queixo. Use pincel ou dedos para espalhar. Para pele madura, prefira iluminador líquido. Para pele jovem, pode usar pó.",
+      "image": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-7",
+      "title": "Sobrancelhas Definidas",
+      "content": "DICA: Use lápis ou pó 1 tom mais claro que os cabelos, preencha as falhas com traços suaves, siga o formato natural. Finalize com gel fixador para manter no lugar. Para formato, siga a linha do nariz.",
+      "image": "https://images.unsplash.com/photo-1595550912256-b24059bb08e8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-8",
+      "title": "Máscara de Cílios",
+      "content": "DICA: Curva os cílios antes de aplicar, comece pela raiz e vá até as pontas, aplique em camadas finas. Para cílios inferiores, use uma escova menor. Para volume extra, aplique pó translúcido entre as camadas.",
+      "image": "https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-9",
+      "title": "Delineador Fácil",
+      "content": "DICA: Comece com delineador em gel ou caneta, faça pontos na linha d'água e conecte. Para iniciantes, use fita adesiva como guia. Para olhos pequenos, faça a linha mais fina. Para olhos grandes, pode fazer mais grossa.",
+      "image": "https://images.unsplash.com/photo-1566344523460-c7059288a9d6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=626",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-10",
+      "title": "Corretivo Pontual",
+      "content": "DICA: Use cor 1 tom mais clara que sua pele, aplique com pincel fino nas olheiras e manchas, misture bem com esponja úmida. Para manchas escuras, use corretivo laranja primeiro. Finalize com pó para fixar.",
+      "image": "https://images.unsplash.com/photo-1709477542170-f11ee7d471a0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-11",
+      "title": "Fixador Final",
+      "content": "DICA: Use spray fixador a 30cm do rosto, aplique em movimento circular, deixe secar naturalmente. Para pele oleosa, use pó translúcido antes. Para pele seca, prefira spray hidratante. Evite excesso para não pesar.",
+      "image": "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1080&h=1920&fit=crop",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-12",
+      "title": "Sombras Suaves",
+      "content": "DICA: Use sombra clara na pálpebra, média no meio e escura no canto externo. Misture bem com pincel limpo. Para olhos pequenos, use tons claros. Para olhos grandes, pode usar tons mais escuros.",
+      "image": "https://images.unsplash.com/photo-1571332283201-99c82a8b3046?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1472",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-13",
+      "title": "Rímel Volumoso",
+      "content": "DICA: Aplique rímel em movimento de zigue-zague, comece pela raiz e vá até as pontas. Para volume extra, aplique duas camadas. Para cílios inferiores, use escova menor. Deixe secar entre as camadas.",
+      "image": "https://plus.unsplash.com/premium_photo-1678377960130-bb70ffeb1cd8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-14",
+      "title": "Batom Longa Duração",
+      "content": "DICA: Contorne os lábios com lápis, preencha com batom, pressione com papel para remover excesso. Aplique segunda camada e finalize com gloss. Para lábios finos, use tons claros. Para lábios grossos, use tons escuros.",
+      "image": "https://images.unsplash.com/photo-1709477542145-868afa3d298b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-15",
+      "title": "Pó Compacto",
+      "content": "DICA: Use pó compacto para toque final, aplique com esponja úmida em movimento circular. Para pele oleosa, aplique mais pó. Para pele seca, use menos. Finalize com spray fixador para durabilidade.",
+      "image": "https://images.unsplash.com/photo-1737014892220-4123c7e020a1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1373",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    },
+    {
+      "id": "makeup-16",
+      "title": "Preparação da Pele",
+      "content": "DICA: Limpe bem a pele, aplique hidratante e deixe absorver. Use primer para uniformizar a textura. Para pele oleosa, use primer matificante. Para pele seca, use primer hidratante. Aguarde 5 minutos antes da base.",
+      "image": "https://images.unsplash.com/photo-1606158582120-b4fc196bffad?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
+      "type": "makeup-tip",
+      "category": "Beleza"
+    }
+  ]
+}

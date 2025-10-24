@@ -1,115 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X, Play, Pause } from 'lucide-react';
 import StoriesBackground from './StoriesBackground';
+import { useStaticData } from '@/hooks/useStaticData';
+import { StoriesData } from '@/types/stories';
 
 const WellnessStories = () => {
+  // Carregar dados dos stories dos arquivos JSON
+  const { data: storiesModa } = useStaticData<StoriesData>('stories-moda');
+  const { data: storiesBeleza } = useStaticData<StoriesData>('stories-beleza');
+  const { data: storiesAlimentacao } = useStaticData<StoriesData>('stories-alimentacao');
+  const { data: storiesSaudeMental } = useStaticData<StoriesData>('stories-saude-mental');
+
+  // Combinar todos os stories em uma estrutura unificada
   const stories = [
     {
       id: 1,
-      category: 'Beleza',
+      category: 'Moda',
       title: 'Moda',
-      stories: [
-        {
-          title: 'Cápsula do Guarda-Roupa',
-          content: 'DICA: Escolha 7 peças básicas: 2 calças (jeans + social), 2 camisetas, 1 blazer, 1 vestido e 1 casaco. Todas em cores neutras (preto, branco, bege, azul marinho). Essas peças criam 21 combinações diferentes!',
-          image: 'https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470',
-          type: 'fashion-tip',
-        },
-        {
-          title: 'Acessórios que Fazem a Diferença',
-          content: 'DICA: Use a regra do 3: máximo 3 acessórios por look. Exemplo: brinco + colar + bolsa. Ou pulseira + relógio + óculos. Acessórios dourados ficam elegantes, prateados são mais casuais.',
-          image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1080&h=1920&fit=crop',
-          type: 'fashion-tip',
-        },
-        {
-          title: 'Tendências Outono 2024',
-          content: 'DICA: As 4 tendências que você precisa saber: 🧥 Blazers Oversized, 👢 Botas Altas, 🧶 Tricot Chunky, 🤎 Tons Terrosos. Combine essas peças para looks modernos e elegantes.',
-          backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          type: 'fashion-tip'
-        },
-        {
-          title: 'Como Usar Camisa Oversized',
-          content: 'DICA: 3 passos para usar camisa oversized: 1️⃣ Use com calça de alfaiataria para equilíbrio, 2️⃣ Dê um nó na frente para marcar a cintura, 3️⃣ Adicione acessórios statement para finalizar.',
-          backgroundColor: 'linear-gradient(90deg, #FF6B9D 0%, #C06C84 100%)',
-          type: 'fashion-tip'
-        },
-        {
-          title: 'Must Have da Temporada',
-          content: 'DICA: Os 3 essenciais que você precisa: 👔 Blazer Estruturado (peça coringa), 👖 Wide Leg Jeans (conforto e estilo), 👜 Bolsa Bucket (acessório prático). Essas peças transformam qualquer look básico.',
-          backgroundColor: 'linear-gradient(45deg, #2C5364 0%, #203A43 50%, #0F2027 100%)',
-          type: 'fashion-tip'
-        },
-        {
-          title: 'Como Combinar Estampas',
-          content: 'DICA: Use uma cor em comum entre as estampas. Misture tamanhos: uma grande + uma pequena. Balance com peças lisas e neutras. Limite a 2-3 estampas por look.',
-          backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          type: 'fashion-tip',
-          emoji: '🎨'
-        },
-        {
-          title: 'Proporção Perfeita',
-          content: 'DICA: Se a parte de cima é volumosa, a de baixo deve ser ajustada. Oversized + Slim = Look Equilibrado. Use essa regra para criar silhuetas harmoniosas.',
-          backgroundColor: 'linear-gradient(180deg, #f093fb 0%, #f5576c 100%)',
-          type: 'fashion-tip',
-          emoji: '👔👖'
-        },
-        {
-          title: 'Guarda-Roupa de Transição',
-          content: 'DICA: 1️ Sobreposições Leves (cardigans e jaquetas finas), 2️ Tecidos Versáteis (algodão e linho mais pesados), 3️ Calçados Fechados (troque sandálias por sapatilhas), 4️ Cores Neutras (introduza tons terrosos).',
-          backgroundColor: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-          type: 'fashion-tip',
-          emoji: '🌤️'
-        },
-        {
-          title: 'Acessórios Versáteis',
-          content: 'DICA: 👜 Bolsa Neutra (combina com tudo), 👟 Tênis Branco (do casual ao elegante), ⌚ Relógio Clássico (atemporal e sofisticado), 🕶️ Óculos Aviador (nunca sai de moda).',
-          backgroundColor: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-          type: 'fashion-tip',
-          emoji: '✨'
-        },
-        {
-          title: 'Erro que Encurta o Look',
-          content: 'DICA: ❌ NÃO FAÇA: Usar calça de cintura baixa com top curto cria uma linha que corta sua silhueta. ✅ FAÇA ISSO: Prefira cintura alta ou média para alongar as pernas e criar proporção.',
-          backgroundColor: 'linear-gradient(135deg, #ff6a00 0%, #ee0979 100%)',
-          type: 'fashion-tip',
-          emoji: '⚠️'
-        },
-        {
-          title: 'Arrume Seu Guarda-Roupa',
-          content: 'DICA: ✓ Separe por categoria (blusas, calças, vestidos), ✓ Use cabides iguais para visual limpo, ✓ Organize por cores dentro de cada categoria, ✓ Deixe peças mais usadas em fácil acesso, ✓ Dobe malhas para não deformarem.',
-          backgroundColor: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-          type: 'fashion-tip',
-          emoji: '📋'
-        },
-        {
-          title: 'Silhueta Ideal',
-          content: 'DICA: Para alongar: use cores escuras, cintura alta e calças de alfaiataria. Para equilibrar: combine volumes opostos (parte de cima solta com parte de baixo justa). Para destacar: use acessórios statement e cores vibrantes.',
-          backgroundColor: 'linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%)',
-          type: 'fashion-tip',
-          emoji: '👗'
-        },
-        {
-          title: 'Tecidos por Estação',
-          content: 'DICA: 🌸 Primavera: algodão, linho, seda leve. ☀️ Verão: viscose, modal, tecidos respiráveis. 🍂 Outono: lã, cashmere, veludo. ❄️ Inverno: lã pesada, alpaca, tecidos térmicos.',
-          backgroundColor: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
-          type: 'fashion-tip',
-          emoji: '🌤️'
-        },
-        {
-          title: 'Investimento Inteligente',
-          content: 'DICA: 💎 Peças atemporais: blazer, jeans clássico, camisa branca. 🎯 Acessórios versáteis: bolsa neutra, sapatos confortáveis. 🔄 Peças sazonais: compre em promoção no final da temporada. 📏 Ajustes: vale mais investir em um bom alfaiate.',
-          backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          type: 'fashion-tip',
-          emoji: '💰'
-        },
-        {
-          title: 'Look Corporativo',
-          content: 'DICA: 👔 Blazer estruturado + calça de alfaiataria, 👠 Sapatos fechados e confortáveis, 💼 Bolsa elegante e funcional, 🎨 Cores neutras com um toque de cor, ✨ Acessórios discretos e profissionais.',
-          backgroundColor: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-          type: 'fashion-tip',
-          emoji: '💼'
-        }
-      ],
+      stories: storiesModa?.stories || [],
       color: 'from-pink-400 to-rose-500',
       backgroundImage: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop'
     },
@@ -117,104 +25,7 @@ const WellnessStories = () => {
       id: 2,
       category: 'Beleza',
       title: 'Maquiagem',
-      stories: [
-        {
-          title: 'Base Perfeita',
-          content: 'DICA: Prepare a pele com hidratante, use primer para uniformizar, aplique a base com pincel ou esponja úmida, finalize com pó translúcido. Para cobertura extra, use corretivo líquido nas áreas que precisam.',
-          image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1080&h=1920&fit=crop',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Olhos Definidos',
-          content: 'DICA: Use sombra clara na pálpebra, sombra média no côncavo, sombra escura no canto externo. Aplique delineador líquido na linha d\'água superior, finalize com máscara de cílios em camadas.',
-          image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1080&h=1920&fit=crop',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Batom Duradero',
-          content: 'DICA: Hidrate os lábios antes, use lápis labial para contornar, aplique o batom com pincel para melhor fixação, retire o excesso com papel, aplique uma segunda camada. Para brilho, contra com gloss.',
-          image: 'https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1080&h=1920&fit=crop',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Contorno Natural',
-          content: 'DICA: Use cor 2 tons mais escura que sua pele, aplique nas laterais do nariz, nas maçãs do rosto e no maxilar. Misture bem com esponja úmida para efeito natural. Finalize com pó para fixar.',
-          image: 'https://images.unsplash.com/photo-1620464003286-a5b0d79f32c2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=736',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Blush Perfeito',
-          content: 'DICA: Sorria para encontrar as maçãs do rosto, aplique o blush em movimento circular com pincel, comece suave e vá intensificando. Para rosto redondo, aplique nas laterais. Para rosto alongado, aplique nas maçãs.',
-          image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1080&h=1920&fit=crop',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Iluminador Glow',
-          content: 'DICA: Aplique nos pontos altos do rosto: topo das maçãs, ponte do nariz, centro da testa e queixo. Use pincel ou dedos para espalhar. Para pele madura, prefira iluminador líquido. Para pele jovem, pode usar pó.',
-          image: 'https://images.unsplash.com/photo-1487412912498-0447578fcca8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Sobrancelhas Definidas',
-          content: 'DICA: Use lápis ou pó 1 tom mais claro que os cabelos, preencha as falhas com traços suaves, siga o formato natural. Finalize com gel fixador para manter no lugar. Para formato, siga a linha do nariz.',
-          image: 'https://images.unsplash.com/photo-1595550912256-b24059bb08e8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Máscara de Cílios',
-          content: 'DICA: Curva os cílios antes de aplicar, comece pela raiz e vá até as pontas, aplique em camadas finas. Para cílios inferiores, use uma escova menor. Para volume extra, aplique pó translúcido entre as camadas.',
-          image: 'https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Delineador Fácil',
-          content: 'DICA: Comece com delineador em gel ou caneta, faça pontos na linha d\'água e conecte. Para iniciantes, use fita adesiva como guia. Para olhos pequenos, faça a linha mais fina. Para olhos grandes, pode fazer mais grossa.',
-          image: 'https://images.unsplash.com/photo-1566344523460-c7059288a9d6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=626',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Corretivo Pontual',
-          content: 'DICA: Use cor 1 tom mais clara que sua pele, aplique com pincel fino nas olheiras e manchas, misture bem com esponja úmida. Para manchas escuras, use corretivo laranja primeiro. Finalize com pó para fixar.',
-          image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1080&h=1920&fit=crop',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Fixador Final',
-          content: 'DICA: Use spray fixador a 30cm do rosto, aplique em movimento circular, deixe secar naturalmente. Para pele oleosa, use pó translúcido antes. Para pele seca, prefira spray hidratante. Evite excesso para não pesar.',
-          image: 'https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1080&h=1920&fit=crop',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Sombras Suaves',
-          content: 'DICA: Use sombra clara na pálpebra, média no meio e escura no canto externo. Misture bem com pincel limpo. Para olhos pequenos, use tons claros. Para olhos grandes, pode usar tons mais escuros.',
-          image: 'https://images.unsplash.com/photo-1571332283201-99c82a8b3046?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1472',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Rímel Volumoso',
-          content: 'DICA: Aplique rímel em movimento de zigue-zague, comece pela raiz e vá até as pontas. Para volume extra, aplique duas camadas. Para cílios inferiores, use escova menor. Deixe secar entre as camadas.',
-          image: 'https://plus.unsplash.com/premium_photo-1678377960130-bb70ffeb1cd8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Batom Longa Duração',
-          content: 'DICA: Contorne os lábios com lápis, preencha com batom, pressione com papel para remover excesso. Aplique segunda camada e finalize com gloss. Para lábios finos, use tons claros. Para lábios grossos, use tons escuros.',
-          image: 'https://images.unsplash.com/photo-1709477542145-868afa3d298b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Pó Compacto',
-          content: 'DICA: Use pó compacto para toque final, aplique com esponja úmida em movimento circular. Para pele oleosa, aplique mais pó. Para pele seca, use menos. Finalize com spray fixador para durabilidade.',
-          image: 'https://images.unsplash.com/photo-1737014892220-4123c7e020a1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1373',
-          type: 'makeup-tip'
-        },
-        {
-          title: 'Preparação da Pele',
-          content: 'DICA: Limpe bem a pele, aplique hidratante e deixe absorver. Use primer para uniformizar a textura. Para pele oleosa, use primer matificante. Para pele seca, use primer hidratante. Aguarde 5 minutos antes da base.',
-          image: 'https://images.unsplash.com/photo-1606158582120-b4fc196bffad?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-          type: 'makeup-tip',
-        }
-      ],
+      stories: storiesBeleza?.stories || [],
       color: 'from-purple-400 to-indigo-500',
       backgroundImage: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop'
     },
@@ -222,86 +33,7 @@ const WellnessStories = () => {
       id: 3,
       category: 'Alimentação',
       title: 'Alimentação',
-      stories: [
-        {
-          title: 'Café da Manhã Energético',
-          content: 'DICA: Comece com aveia, frutas frescas e proteína. Misture aveia com leite, adicione banana, morangos e chia. Para proteína, inclua iogurte grego ou ovo cozido. Evite açúcares refinados pela manhã.',
-          image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1080&h=1920&fit=crop',
-          type: 'food-tip'
-        },
-        {
-          title: 'Hidratação Inteligente',
-          content: 'DICA: Beba água ao acordar, entre refeições e antes de dormir. Adicione limão, pepino ou hortelã para sabor. Evite líquidos durante as refeições. Para esportistas, hidrate antes, durante e após exercícios.',
-          image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1080&h=1920&fit=crop',
-          type: 'food-tip'
-        },
-        {
-          title: 'Almoço Equilibrado',
-          content: 'DICA: Divida o prato: 50% vegetais, 25% proteína magra, 25% carboidratos integrais. Use azeite extra-virgem para temperar. Mastigue devagar e saboreie cada garfada. Evite frituras e molhos pesados.',
-          image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1920&fit=crop',
-          type: 'food-tip'
-        },
-        {
-          title: 'Lanches Saudáveis',
-          content: 'DICA: Prepare snacks naturais: mix de castanhas, frutas secas, palitos de vegetais com homus. Evite produtos industrializados. Mantenha porções pequenas. Para doces, prefira frutas ou chocolate amargo.',
-          image: 'https://images.unsplash.com/photo-1515041761709-f9fc96e04cd3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470',
-          type: 'food-tip'
-        },
-        {
-          title: 'Jantar Leve',
-          content: 'DICA: Jante 3 horas antes de dormir. Prefira sopas, saladas ou grelhados. Evite carboidratos pesados à noite. Inclua vegetais verdes e proteína magra. Para sobremesa, frutas ou chá calmante.',
-          image: 'https://images.unsplash.com/photo-1668665771757-4d42737d295a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880',
-          type: 'food-tip'
-        },
-        {
-          title: 'Planejamento de Refeições',
-          content: 'DICA: Planeje o cardápio semanal, faça lista de compras e prepare ingredientes no domingo. Congele porções individuais. Tenha sempre vegetais limpos na geladeira. Economize tempo e evite desperdício.',
-          image: 'https://images.unsplash.com/photo-1523289333742-be1143f6b766?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470',
-          type: 'food-tip'
-        },
-        {
-          title: 'Cozinha Inteligente',
-          content: 'DICA: Use temperos naturais: alho, cebola, ervas frescas, limão. Evite temperos prontos com sódio. Faça caldos caseiros e congele. Use panelas antiaderentes para reduzir óleo. Organize a despensa por categorias.',
-          image: 'https://images.unsplash.com/photo-1517646458010-ea6bd9f4a75f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470',
-          type: 'food-tip'
-        },
-        {
-          title: 'Porções Moderadas',
-          content: 'DICA: Use pratos menores para controlar porções. Mastigue 20 vezes cada garfada. Pare de comer quando estiver 80% satisfeito. Sirva-se uma vez e evite repetir. Coma devagar para dar tempo do cérebro registrar saciedade.',
-          image: 'https://images.unsplash.com/photo-1606658046016-a9d52350d867?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1373',
-          type: 'food-tip'
-        },
-        {
-          title: 'Vegetais Coloridos',
-          content: 'DICA: Varie as cores dos vegetais: vermelho (tomate, pimentão), verde (brócolis, espinafre), laranja (cenoura, abóbora), roxo (berinjela, repolho roxo). Cada cor oferece nutrientes diferentes. Coma pelo menos 3 cores diferentes por dia.',
-          image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1080&h=1920&fit=crop',
-          type: 'food-tip'
-        },
-        {
-          title: 'Proteínas Magras',
-          content: 'DICA: Escolha proteínas magras: peito de frango, peixes brancos, ovos, leguminosas (feijão, lentilha, grão-de-bico). Evite carnes processadas e frituras. Consuma proteína em todas as refeições para manter a saciedade.',
-          image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=1080&h=1920&fit=crop',
-          type: 'food-tip'
-        },
-        {
-          title: 'Grãos Integrais',
-          content: 'DICA: Prefira grãos integrais: arroz integral, quinoa, aveia, pão integral. Eles têm mais fibras, vitaminas e minerais. Mantêm a glicemia estável e dão saciedade por mais tempo. Evite grãos refinados e processados.',
-          image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=1080&h=1920&fit=crop',
-          type: 'food-tip'
-        },
-        {
-          title: 'Gorduras Saudáveis',
-          content: 'DICA: Use gorduras boas: azeite extra-virgem, abacate, castanhas, sementes (chia, linhaça). Evite gorduras trans e saturadas. As gorduras boas ajudam na absorção de vitaminas e dão saciedade.',
-          image: 'https://images.unsplash.com/photo-1642689690565-bf0afb7eb41e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470',
-          type: 'food-tip'
-        },
-        {
-          title: 'Comer Consciente',
-          content: 'DICA: Coma sem distrações (TV, celular). Preste atenção no sabor, textura e aroma dos alimentos. Mastigue bem cada garfada. Faça pausas entre as garfadas. Isso melhora a digestão e evita excessos.',
-          image: 'https://images.unsplash.com/photo-1621261105631-807a31e9a708?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=708',
-          type: 'food-tip'
-        }
-      ],
+      stories: storiesAlimentacao?.stories || [],
       color: 'from-green-400 to-emerald-500',
       backgroundImage: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=400&fit=crop'
     },
@@ -309,58 +41,9 @@ const WellnessStories = () => {
       id: 4,
       category: 'Saúde Mental',
       title: 'Saúde Mental',
-      stories: [
-        {
-          title: 'Respiração para Ansiedade',
-          content: 'DICA: Técnica 4-7-8: Inspire 4 segundos, segure 7 segundos, expire 8 segundos. Repita 4 vezes. Acalma o sistema nervoso e reduz ansiedade instantaneamente.',
-          image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        },
-        {
-          title: 'Gratidão Diária',
-          content: 'DICA: Escreva 3 coisas pelas quais é grata toda manhã. Pode ser simples: sol, família, saúde. A gratidão rewire o cérebro para focar no positivo.',
-          image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        },
-        {
-          title: 'Boundaries Saudáveis',
-          content: 'DICA: Aprenda a dizer "não" sem culpa. Proteja seu tempo e energia. Boundaries não são egoísmo, são autocuidado necessário para bem-estar mental.',
-          image: 'https://images.unsplash.com/photo-1515378791036-0648a814c963?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        },
-        {
-          title: 'Mindfulness Simples',
-          content: 'DICA: Pause 5 vezes ao dia e observe: O que sinto? O que penso? O que vejo? Essa consciência presente reduz estresse e aumenta clareza mental.',
-          image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        },
-        {
-          title: 'Sono de Qualidade',
-          content: 'DICA: Crie rotina noturna: sem telas 1h antes de dormir, quarto escuro e fresco, horário fixo. Sono reparador é fundamental para saúde mental.',
-          image: 'https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        },
-        {
-          title: 'Autocompaixão',
-          content: 'DICA: Trate-se como trataria uma amiga querida. Erros são humanos. Seja gentil consigo mesma. Autocompaixão fortalece resiliência emocional.',
-          image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        },
-        {
-          title: 'Movimento e Humor',
-          content: 'DICA: Exercício libera endorfinas naturais. Caminhe 10 min ao ar livre, dance, alongue. Movimento é antidepressivo natural e melhora autoestima.',
-          image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        },
-        {
-          title: 'Conexão Social',
-          content: 'DICA: Mantenha conexões significativas. Chame uma amiga, participe de grupos, seja voluntária. Conexão social é essencial para saúde mental.',
-          image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1080&h=1920&fit=crop',
-          type: 'wellness'
-        }
-      ],
+      stories: storiesSaudeMental?.stories || [],
       color: 'from-green-400 to-teal-500',
-      backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop'
+      backgroundImage: 'https://images.unsplash.com/photo-1502285396443-fa7ddf155eda?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1374'
     }
   ];
 
@@ -422,18 +105,20 @@ const WellnessStories = () => {
     setShowStories(true);
   };
 
-  const getTypeLabel = (type: string) => {
-    const labels = {
-      'beauty-tip': '💄 Dica de Beleza',
-      'makeup-tip': '💋 Dica de Maquiagem',
-      'food-tip': '🥗 Dica de Alimentação',
-      wellness: '🧘‍♀️ Bem-estar',
-      recipe: '🥗 Receita',
-      motivation: '🌟 Motivação',
-      tutorial: '💋 Tutorial'
-    };
-    return labels[type as keyof typeof labels] || type;
+  // Função para controle por toque nas bordas
+  const handleTouch = (e: React.TouchEvent) => {
+    const touchX = e.targetTouches[0].clientX;
+    const screenWidth = window.innerWidth;
+    const leftZone = screenWidth * 0.3; // 30% da tela para a esquerda
+    const rightZone = screenWidth * 0.7; // 70% da tela para a direita
+
+    if (touchX < leftZone) {
+      prevStory();
+    } else if (touchX > rightZone) {
+      nextStory();
+    }
   };
+
 
   const getStoryLabel = (title: string) => {
     if (title.includes('Como Combinar')) return 'Dica Express';
@@ -759,11 +444,25 @@ const WellnessStories = () => {
   }
 
   const currentCategory = stories[activeCategory];
-  const currentStory = currentCategory.stories[activeStory];
+  const currentStory = currentCategory?.stories?.[activeStory];
+
+  // Verificar se currentStory existe antes de renderizar
+  if (!currentStory) {
+    return (
+      <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+        <div className="text-white text-center">
+          <p>Carregando stories...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-      <div className="relative w-full h-full max-w-md mx-auto">
+      <div 
+        className="relative w-full h-full max-w-md mx-auto"
+        onTouchStart={handleTouch}
+      >
         <div 
           key={`${activeCategory}-${activeStory}`}
           className="absolute inset-0 bg-cover bg-center"
@@ -858,17 +557,17 @@ const WellnessStories = () => {
 
         </div>
 
-        {/* Navegação */}
+        {/* Navegação - Ocultar no mobile */}
         <button
           onClick={prevStory}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 hidden sm:block"
           disabled={activeCategory === 0 && activeStory === 0}
         >
           <ChevronLeft size={32} />
         </button>
         <button
           onClick={nextStory}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 hidden sm:block"
         >
           <ChevronRight size={32} />
         </button>
