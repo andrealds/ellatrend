@@ -73,11 +73,9 @@ export function useStaticData<T>(type: DataType) {
           if (fileData['artigos']) {
             allData.artigos = [...(allData.artigos || []), ...fileData['artigos']];
           }
-        } 
-        // Para stories, procurar por 'stories' no JSON
-        else if (type.startsWith('stories-')) {
+        } else if (type.startsWith('stories-')) {
           if (fileData['stories']) {
-            allData.stories = [...(allData.stories || []), ...fileData['stories']];
+            (allData as any)[type] = [...((allData as any)[type] || []), ...fileData['stories']];
           }
         } else {
           if (fileData[type as keyof typeof fileData]) {
@@ -90,10 +88,6 @@ export function useStaticData<T>(type: DataType) {
 
         if (type === 'artigos-beleza' || type === 'artigos-saude-mental' || type === 'artigos-alimentacao' || type === 'todos-os-artigos' || type === 'artigos-por-horario') {
           if (!allData.artigos || allData.artigos.length === 0) {
-            throw new Error(`Nenhum dado encontrado para ${type}`);
-          }
-        } else if (type.startsWith('stories-')) {
-          if (!allData.stories || allData.stories.length === 0) {
             throw new Error(`Nenhum dado encontrado para ${type}`);
           }
         } else {
@@ -157,7 +151,7 @@ export function useStaticData<T>(type: DataType) {
           } as T;
           setData(result);
         } else if (type.startsWith('stories-')) {
-          const result = { stories: allData.stories } as T;
+          const result = { stories: (allData as any)[type] } as T;
           setData(result);
         } else {
           setData(allData as T);

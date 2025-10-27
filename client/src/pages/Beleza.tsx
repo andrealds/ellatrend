@@ -9,7 +9,6 @@ import { Calendar, Eye, Clock, AlertCircle } from "lucide-react";
 import { Link } from "wouter";
 import Pagination from "@/components/beleza/Pagination";
 import FilterBar from "@/components/beleza/FilterBar";
-import AdSpace from "@/components/beleza/AdSpace";
 
 interface Artigo {
   id: string;
@@ -156,18 +155,6 @@ export default function Beleza() {
           onFilterChange={handleFilterChange}
         />
 
-        {/* Banner Top */}
-        <AdSpace 
-          type="banner"
-          position="top"
-          size="medium"
-          title="Descubra os Melhores Produtos de Beleza"
-          description="Encontre ofertas exclusivas e produtos recomendados por especialistas"
-          ctaText="Ver Ofertas"
-          ctaUrl="/ofertas"
-          sponsored={true}
-        />
-
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
@@ -263,21 +250,6 @@ export default function Beleza() {
               </p>
             </CardContent>
           </Card>
-        )}
-
-        {/* Card Patrocinado */}
-        {paginationData.paginatedArticles.length > 0 && (
-          <AdSpace 
-            type="card"
-            position="middle"
-            size="medium"
-            title="Produtos Recomendados"
-            description="Descubra os produtos de beleza mais populares e bem avaliados"
-            imageUrl="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80"
-            ctaText="Ver Produtos"
-            ctaUrl="/produtos"
-            sponsored={true}
-          />
         )}
 
         {/* Paginação */}

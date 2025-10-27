@@ -8,7 +8,6 @@ import { Calendar, Eye, Clock, AlertCircle } from "lucide-react";
 import { Link } from "wouter";
 import Pagination from "@/components/beleza/Pagination";
 import FilterBar from "@/components/beleza/FilterBar";
-import AdSpace from "@/components/beleza/AdSpace";
 
 interface Artigo {
   id: string;
@@ -124,17 +123,6 @@ export default function Alimentacao() {
           onFilterChange={handleFilterChange}
         />
 
-        <AdSpace
-          type="banner"
-          position="top"
-          size="medium"
-          title="Receitas Saudáveis"
-          description="Transforme sua cozinha em um laboratório de saúde e sabor"
-          ctaText="Ver Receitas"
-          ctaUrl="/receitas-saudaveis"
-          sponsored={true}
-        />
-
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
@@ -230,20 +218,6 @@ export default function Alimentacao() {
               </p>
             </CardContent>
           </Card>
-        )}
-
-        {paginationData.paginatedArticles.length > 0 && (
-          <AdSpace
-            type="card"
-            position="middle"
-            size="medium"
-            title="Superalimentos"
-            description="Descubra os alimentos mais nutritivos para sua saúde"
-            imageUrl="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80"
-            ctaText="Ver Superalimentos"
-            ctaUrl="/superalimentos"
-            sponsored={true}
-          />
         )}
 
         <div className="mb-8">

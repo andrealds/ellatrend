@@ -1,4 +1,4 @@
-export type CategoriaArtigo = 'Beleza' | 'Saude' | 'Moda' | 'Desenvolvimento';
+export type CategoriaArtigo = 'Beleza' | 'Saúde Mental' | 'Alimentação';
 
 export type StatusArtigo = 'DRAFT' | 'PUBLISHED';
 
@@ -8,12 +8,10 @@ export interface ArtigoUniversal {
   descricao: string;
   conteudo: string;
   imagemDestaque: string;
-  autor: string;
   tempoLeitura: string;
   
   // Categorização
   categoria: CategoriaArtigo;
-  subcategoria: string;
   tag: string;
   
   // SEO
@@ -23,7 +21,6 @@ export interface ArtigoUniversal {
   
   // Configurações
   destaque: boolean;
-  status: StatusArtigo;
   dataPublicacao: string;
   
   // Métricas
@@ -32,6 +29,11 @@ export interface ArtigoUniversal {
   
   // Relacionamentos
   artigosRelacionados: string[];
+  
+  // Campos opcionais (não presentes em todos os dados)
+  autor?: string;
+  subcategoria?: string;
+  status?: StatusArtigo;
 }
 
 export interface ArtigoResponse {
@@ -69,17 +71,13 @@ export const CATEGORIAS_ARTIGO: Record<CategoriaArtigo, { label: string; subcate
     label: 'Beleza',
     subcategorias: ['Skincare', 'Maquiagem', 'Cabelo', 'Unhas', 'Perfumes']
   },
-  Saude: {
-    label: 'Saúde',
-    subcategorias: ['Saúde Mental', 'Nutrição', 'Exercícios', 'Bem-estar', 'Prevenção']
+  'Saúde Mental': {
+    label: 'Saúde Mental',
+    subcategorias: ['Ansiedade', 'Depressão', 'Meditação', 'Bem-estar', 'Terapia']
   },
-  Moda: {
-    label: 'Moda',
-    subcategorias: ['Looks', 'Tendências', 'Estilo', 'Acessórios', 'Sapatos']
-  },
-  Desenvolvimento: {
-    label: 'Desenvolvimento Pessoal',
-    subcategorias: ['Produtividade', 'Carreira', 'Relacionamentos', 'Liderança', 'Crescimento']
+  'Alimentação': {
+    label: 'Alimentação',
+    subcategorias: ['Nutrição', 'Receitas', 'Dietas', 'Suplementos', 'Saúde']
   }
 };
 

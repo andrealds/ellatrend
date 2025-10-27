@@ -9,7 +9,6 @@ import { Calendar, Eye, Clock, AlertCircle } from "lucide-react";
 import { Link } from "wouter";
 import Pagination from "@/components/beleza/Pagination";
 import FilterBar from "@/components/beleza/FilterBar";
-import AdSpace from "@/components/beleza/AdSpace";
 
 interface Artigo {
   id: string;
@@ -156,18 +155,6 @@ export default function SaudeMental() {
           onFilterChange={handleFilterChange}
         />
 
-        {/* Banner Top */}
-        <AdSpace 
-          type="banner"
-          position="top"
-          size="medium"
-          title="Recursos para Saúde Mental"
-          description="Encontre ferramentas e técnicas para cuidar do seu bem-estar mental"
-          ctaText="Ver Recursos"
-          ctaUrl="/recursos"
-          sponsored={true}
-        />
-
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
@@ -263,21 +250,6 @@ export default function SaudeMental() {
               </p>
             </CardContent>
           </Card>
-        )}
-
-        {/* Card Patrocinado */}
-        {paginationData.paginatedArticles.length > 0 && (
-          <AdSpace 
-            type="card"
-            position="middle"
-            size="medium"
-            title="Aplicativos de Meditação"
-            description="Descubra os melhores apps para mindfulness e bem-estar mental"
-            imageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80"
-            ctaText="Baixar Apps"
-            ctaUrl="/apps"
-            sponsored={true}
-          />
         )}
 
         {/* Paginação */}

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Eye, Star, Filter, Apple } from "lucide-react";
 import { useStaticData } from "@/hooks/useStaticData";
-import { Artigo } from "@/types/artigos";
+import { ArtigoUniversal } from "@/types/artigos";
 // import FilterBar from "@/components/beleza/FilterBar";
 import Pagination from "@/components/beleza/Pagination";
 import AdSpace from "@/components/beleza/AdSpace";

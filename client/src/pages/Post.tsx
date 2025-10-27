@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Eye, Heart, Share2, ExternalLink, ChevronRight, Star } from "lucide-react";
+import { Calendar, Eye, Heart, Share2 } from "lucide-react";
 import { marked } from "marked";
 import { useStaticData } from "@/hooks/useStaticData";
 
@@ -35,7 +35,7 @@ export default function Post() {
   const error = errorArtigosBeleza || errorArtigosSaude || errorArtigosAlimentacao;
 
   // Função para misturar artigos de forma aleatória baseada na data
-  const shuffleArray = <T>(array: T[], seed?: number): T[] => {
+  const shuffleArray = <T,>(array: T[], seed?: number): T[] => {
     const shuffled = [...array];
     const randomSeed = seed || Math.floor(Date.now() / (1000 * 60 * 60 * 24)); // Muda a cada dia
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -235,112 +235,6 @@ export default function Post() {
               />
             </CardContent>
           </Card>
-
-          {/* Banner Google Ads */}
-          <div className="mb-12 flex justify-center">
-            <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 w-full max-w-md text-center">
-              <div className="text-gray-500 text-sm mb-2">Publicidade</div>
-              <div className="bg-white border border-gray-200 rounded p-4 h-32 flex items-center justify-center">
-                <span className="text-gray-400 text-sm">Google Ads Banner<br/>300x250</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Preços e Ofertas */}
-          {post.produtos && post.produtos.length > 0 && (
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Preços e Ofertas</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {post.produtos.map((produto: any) => (
-                <Card key={produto.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{produto.nome}</h3>
-                    <div className="flex items-baseline space-x-2 mb-6">
-                      <span className="text-2xl font-bold text-primary">
-                        R$ {parseFloat(produto.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                      </span>
-                      <span className="text-sm text-gray-500 line-through">
-                        R$ {parseFloat(produto.precoOriginal).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                      </span>
-                    </div>
-                    <div className="space-y-3">
-                      {Object.entries(produto.linksAfiliados).map(([loja, link]: [string, any]) => (
-                        <a
-                          key={loja}
-                          href={link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <span className="font-medium capitalize">{loja}</span>
-                          <ExternalLink className="h-4 w-4 text-gray-500" />
-                        </a>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-          )}
-
-          {/* Seções de Produtos */}
-          {post.conteudo?.secoes && post.conteudo.secoes.length > 0 && (
-            <>
-              {post.conteudo.secoes.map((secao: any, index: number) => (
-            <div key={index} className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{secao.titulo}</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                {secao.produtos.map((produto: any, prodIndex: number) => (
-                  <Card key={prodIndex} className="p-6 hover:shadow-lg transition-shadow duration-300">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{produto.nome}</h3>
-                    <ul className="space-y-2">
-                      {produto.caracteristicas.map((caracteristica: any, charIndex: number) => (
-                        <li key={charIndex} className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span className="text-gray-600">{caracteristica}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          ))}
-            </>
-          )}
-
-          {/* Veredito */}
-          {post.conteudo?.veredito && (
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Veredito</h2>
-              <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border-none shadow-lg">
-                <CardContent className="p-8">
-                  <p className="text-gray-700 mb-8 text-lg leading-relaxed">{post.conteudo.veredito.conclusao}</p>
-                  <div className="space-y-6">
-                    <h3 className="text-xl font-semibold text-gray-900">Recomendações</h3>
-                    <div className="grid gap-4">
-                      {post.conteudo.veredito.recomendacoes.map((recomendacao: any, index: number) => (
-                      <div 
-                        key={index} 
-                        className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-                      >
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-1">
-                            <Star className="h-5 w-5 text-primary" />
-                            <p className="font-medium text-gray-900">{recomendacao.perfil}</p>
-                          </div>
-                          <p className="text-gray-600 pl-7">{recomendacao.produto}</p>
-                        </div>
-                        <ChevronRight className="h-5 w-5 text-gray-400" />
-                      </div>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
 
           {/* Artigos Relacionados */}
           {artigosRecomendados.length > 0 && (
