@@ -234,6 +234,16 @@ export default function Artigos() {
           <p className="text-gray-600">
             Mostrando {filteredArtigos.length} artigo{filteredArtigos.length !== 1 ? 's' : ''} 
             {activeFilter !== 'todos' && ` em ${filters.find(f => f.id === activeFilter)?.label}`}
+            {totalPages > 1 && (
+              <span className="ml-2">
+                • Página {currentPage} de {totalPages}
+                {currentArtigos.length > 0 && (
+                  <span className="ml-1">
+                    ({currentArtigos.length} artigos nesta página)
+                  </span>
+                )}
+              </span>
+            )}
           </p>
         </div>
 
