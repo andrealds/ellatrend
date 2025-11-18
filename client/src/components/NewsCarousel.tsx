@@ -148,11 +148,9 @@ const WellnessCarousel = () => {
                   </p>
                   
                   <div className="flex items-center gap-4">
-                    <Link to={`/artigo/${currentArtigo.slug}`} className="hidden sm:block">
-                      <button className="px-6 py-3 bg-white text-gray-800 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                        Ler artigo completo
-                      </button>
-                    </Link>
+                    <button className="px-6 py-3 bg-white text-gray-800 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg hidden sm:block">
+                      Ler artigo completo
+                    </button>
                   </div>
                 </div>
               </Link>

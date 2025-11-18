@@ -24,8 +24,8 @@ export interface ArtigoUniversal {
   dataPublicacao: string;
   
   // Métricas
-  visualizacoes: number;
-  curtidas: number;
+  visualizacoes?: number;
+  curtidas?: number;
   
   // Relacionamentos
   artigosRelacionados: string[];

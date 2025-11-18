@@ -1,0 +1,116 @@
+{
+  "stories": [
+    {
+      "id": "wellness-1",
+      "title": "Respiração para Ansiedade",
+      "content": "DICA: Técnica 4-7-8: Inspire 4 segundos, segure 7 segundos, expire 8 segundos. Repita 4 vezes. Acalma o sistema nervoso e reduz ansiedade instantaneamente.",
+      "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1080&h=1920&fit=crop",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-2",
+      "title": "Gratidão Diária",
+      "content": "DICA: Escreva 3 coisas pelas quais é grata toda manhã. Pode ser simples: sol, família, saúde. A gratidão rewire o cérebro para focar no positivo.",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=1920&fit=crop",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-4",
+      "title": "Mindfulness Simples",
+      "content": "DICA: Pause 5 vezes ao dia e observe: O que sinto? O que penso? O que vejo? Essa consciência presente reduz estresse e aumenta clareza mental.",
+      "image": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1080&h=1920&fit=crop",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-5",
+      "title": "Sono de Qualidade",
+      "content": "DICA: Crie rotina noturna: sem telas 1h antes de dormir, quarto escuro e fresco, horário fixo. Sono reparador é fundamental para saúde mental.",
+      "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1460",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-6",
+      "title": "Autocompaixão",
+      "content": "DICA: Trate-se como trataria uma amiga querida. Erros são humanos. Seja gentil consigo mesma. Autocompaixão fortalece resiliência emocional.",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1080&h=1920&fit=crop",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-7",
+      "title": "Movimento e Humor",
+      "content": "DICA: Exercício libera endorfinas naturais. Caminhe 10 min ao ar livre, dance, alongue. Movimento é antidepressivo natural e melhora autoestima.",
+      "image": "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-8",
+      "title": "Conexão Social",
+      "content": "DICA: Mantenha conexões significativas. Chame uma amiga, participe de grupos, seja voluntária. Conexão social é essencial para saúde mental.",
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-9",
+      "title": "Gestão do Estresse",
+      "content": "DICA: Identifique seus gatilhos de estresse e crie estratégias: respiração, música, caminhada, banho quente. Tenha um plano para momentos difíceis.",
+      "image": "https://images.unsplash.com/photo-1638274749450-30c893afe3d1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=735",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-10",
+      "title": "Autoestima Positiva",
+      "content": "DICA: Liste suas qualidades e conquistas. Celebre pequenas vitórias. Evite comparações. Foque no seu progresso pessoal. Autoestima se constrói com prática diária.",
+      "image": "https://images.unsplash.com/photo-1515191107209-c28698631303?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=764",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-11",
+      "title": "Limites Saudáveis",
+      "content": "DICA: Aprenda a dizer 'não' sem culpa. Proteja seu tempo e energia. Limites claros preservam sua saúde mental e fortalecem relacionamentos autênticos.",
+      "image": "https://images.unsplash.com/photo-1506704810770-7e9bbab1094b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-12",
+      "title": "Rotina Matinal",
+      "content": "DICA: Comece o dia com intenção: 5 min de respiração, água, alongamento suave. Rotina matinal positiva define o tom do dia e aumenta produtividade.",
+      "image": "https://images.unsplash.com/photo-1536007164800-b7f11331f35c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-13",
+      "title": "Tecnologia Consciente",
+      "content": "DICA: Desconecte-se 1h antes de dormir. Use modo noturno. Faça pausas digitais. Tecnologia consciente melhora sono, foco e bem-estar mental.",
+      "image": "https://images.unsplash.com/photo-1523503211343-9bb90cc3cb56?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-14",
+      "title": "Criatividade Terapêutica",
+      "content": "DICA: Desenhe, pinte, escreva, dance. Expressão criativa libera emoções e reduz estresse. Arte é terapia natural e fortalece autoconhecimento.",
+      "image": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    },
+    {
+      "id": "wellness-15",
+      "title": "Perdão e Libertação",
+      "content": "DICA: Perdoar não é esquecer, é libertar-se. Guardar rancor prejudica sua saúde mental. Perdão é um presente que você se dá para seguir em frente.",
+      "image": "https://images.unsplash.com/photo-1636228492696-961b090d7735?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
+      "type": "wellness",
+      "category": "Saúde Mental"
+    }
+  ]
+}

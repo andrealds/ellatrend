@@ -1,0 +1,14 @@
+name = "ellatrend-frontend"
+compatibility_date = "2024-01-15"
+
+[env.production]
+name = "ellatrend-frontend"
+
+[[env.production.routes]]
+pattern = "ellatrend.com.br/*"
+zone_name = "ellatrend.com.br"
+
+[[env.production.routes]]
+pattern = "www.ellatrend.com.br/*"
+zone_name = "ellatrend.com.br"
+

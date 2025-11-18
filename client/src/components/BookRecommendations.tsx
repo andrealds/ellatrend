@@ -128,7 +128,8 @@ export default function BookRecommendations() {
       </div>
 
       {/* Estilos CSS exatamente iguais ao código original */}
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .book-card-container {
           display: flex;
           align-items: center;
@@ -211,7 +212,8 @@ export default function BookRecommendations() {
           color: #4a5568;
           transform: scale(1.1);
         }
-      `}</style>
+        `
+      }} />
     </section>
   );
 }

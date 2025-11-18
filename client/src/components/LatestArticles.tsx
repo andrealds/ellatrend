@@ -1,9 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Eye, Star, LayoutGrid } from "lucide-react";
+import { Eye, Heart, LayoutGrid } from "lucide-react";
 import { Link } from "wouter";
 import { useStaticData } from "@/hooks/useStaticData";
+import { useMultipleArticleStats } from "@/hooks/useMultipleArticleStats";
 import { ArtigoUniversal } from "@/types";
 
 export default function LatestArticles() {
@@ -11,6 +12,10 @@ export default function LatestArticles() {
 
   // Filtrar apenas os artigos e limitar a 10
   const posts = data?.artigosConteudo.slice(0, 10) || [];
+  
+  // Buscar estatísticas reais dos artigos
+  const artigoIds = posts.map(post => post.id);
+  const { stats: articleStats, loading: statsLoading } = useMultipleArticleStats(artigoIds);
 
   if (loading) {
     return (
@@ -105,6 +110,15 @@ export default function LatestArticles() {
                 <div className="absolute bottom-3 right-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm">
                   {post.tempoLeitura || '5 min leitura'}
                 </div>
+                <div className="absolute bottom-3 left-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm flex items-center gap-1">
+                  <Eye className="h-3 w-3" />
+                  <span>
+                    {statsLoading 
+                      ? '...' 
+                      : (articleStats[post.id]?.views || 0).toLocaleString()
+                    }
+                  </span>
+                </div>
               </div>
               <CardContent className="p-6 bg-white">
                 <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
@@ -115,26 +129,22 @@ export default function LatestArticles() {
                     {post.descricao}
                   </p>
                 )}
-                <div className="hidden sm:flex items-center justify-between text-sm text-gray-500 mb-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="h-4 w-4" />
-                      <span>
-                        {new Date(post.dataPublicacao).toLocaleDateString('pt-BR')}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="font-medium">4.8</span>
-                  </div>
+                
+                {/* Likes */}
+                <div className="flex items-center space-x-1 text-sm text-gray-500 mb-4">
+                  <Heart className="h-4 w-4 text-red-500" />
+                  <span className="font-medium">
+                    {statsLoading 
+                      ? '...' 
+                      : (articleStats[post.id]?.likes || 0).toLocaleString()
+                    }
+                  </span>
                 </div>
+                
                 <div className="hidden sm:block">
-                  <Link to={`/artigo/${post.slug}`}>
-                    <Button className="w-full bg-gray-800/20 backdrop-blur-md hover:bg-gray-800/30 transition-colors text-gray-800">
-                      Ler Artigo
-                    </Button>
-                  </Link>
+                  <Button className="w-full bg-gray-800/20 backdrop-blur-md hover:bg-gray-800/30 transition-colors text-gray-800">
+                    Ler Artigo
+                  </Button>
                 </div>
               </CardContent>
             </Card>

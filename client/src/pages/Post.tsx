@@ -5,9 +5,12 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AnimatedLikeButton } from "@/components/ui/animated-like-button";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { Calendar, Eye, Heart, Share2 } from "lucide-react";
 import { marked } from "marked";
 import { useStaticData } from "@/hooks/useStaticData";
+import { useCachedSingleArticleStats } from "@/hooks/useCachedSingleArticleStats";
 
 export default function Post() {
   const { slug } = useParams();
@@ -33,6 +36,16 @@ export default function Post() {
   
   const loading = loadingArtigosBeleza || loadingArtigosSaude || loadingArtigosAlimentacao;
   const error = errorArtigosBeleza || errorArtigosSaude || errorArtigosAlimentacao;
+
+  // Hook para gerenciar estatísticas do artigo (com cache)
+  const { stats, loading: statsLoading, incrementViews, toggleLike } = useCachedSingleArticleStats(post?.id || slug || '');
+
+  // Incrementar visualizações quando o post for carregado (apenas uma vez por usuário)
+  useEffect(() => {
+    if (post && !statsLoading) {
+      incrementViews();
+    }
+  }, [post, statsLoading, incrementViews]);
 
   // Função para misturar artigos de forma aleatória baseada na data
   const shuffleArray = <T,>(array: T[], seed?: number): T[] => {
@@ -185,12 +198,13 @@ export default function Post() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Eye className="h-4 w-4" />
-                    <span>{post.visualizacoes?.toLocaleString() || '0'} visualizações</span>
+                    <span>{stats.views.toLocaleString()} visualizações</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Heart className="h-4 w-4" />
-                    <span>{post.curtidas || '0'} curtidas</span>
-                  </div>
+                  <AnimatedCounter
+                    count={stats.likes}
+                    label="curtidas"
+                    icon={<Heart className="h-4 w-4" />}
+                  />
                   {post.autor && (
                     <div className="flex items-center space-x-2 text-sm sm:text-base text-gray-500">
                       <span className="text-gray-500">Por:</span>
@@ -199,8 +213,51 @@ export default function Post() {
                   )}
                 </div>
                 
+                {/* Segunda linha - Botão de Like Animado */}
+                <div className="flex items-center gap-4">
+                  <AnimatedLikeButton
+                    isLiked={stats.userLiked}
+                    likes={stats.likes}
+                    onClick={toggleLike}
+                    disabled={statsLoading}
+                  />
+                </div>
+                
                 {/* Botão Compartilhar */}
-                <Button variant="outline" size="sm" className="self-start sm:self-auto">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="self-start sm:self-auto"
+                  onClick={() => {
+                    if (navigator.share) {
+                      // Usar Web Share API se disponível (mobile)
+                      navigator.share({
+                        title: post.titulo,
+                        text: post.descricao || post.resumo || '',
+                        url: window.location.href
+                      }).catch(console.error);
+                    } else {
+                      // Fallback para desktop - copiar URL
+                      navigator.clipboard.writeText(window.location.href).then(() => {
+                        // Mostrar feedback visual temporário
+                        const button = document.querySelector('[data-share-button]') as HTMLButtonElement;
+                        if (button) {
+                          const originalText = button.innerHTML;
+                          button.innerHTML = '<svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Copiado!';
+                          button.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
+                          setTimeout(() => {
+                            button.innerHTML = originalText;
+                            button.classList.remove('bg-green-50', 'text-green-700', 'border-green-200');
+                          }, 2000);
+                        }
+                      }).catch(() => {
+                        // Fallback final - mostrar URL em alert
+                        alert(`Compartilhe este artigo:\n${window.location.href}`);
+                      });
+                    }
+                  }}
+                  data-share-button
+                >
                   <Share2 className="h-4 w-4 mr-2" />
                   Compartilhar
                 </Button>

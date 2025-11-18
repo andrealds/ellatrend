@@ -1,0 +1,15 @@
+# Cloudflare Workers
+.dev.vars
+wrangler.toml.bak
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+

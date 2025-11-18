@@ -1,0 +1,108 @@
+{
+  "stories": [
+    {
+      "id": "food-1",
+      "title": "Café da Manhã Energético",
+      "content": "DICA: Comece com aveia, frutas frescas e proteína. Misture aveia com leite, adicione banana, morangos e chia. Para proteína, inclua iogurte grego ou ovo cozido. Evite açúcares refinados pela manhã.",
+      "image": "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1080&h=1920&fit=crop",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-2",
+      "title": "Hidratação Inteligente",
+      "content": "DICA: Beba água ao acordar, entre refeições e antes de dormir. Adicione limão, pepino ou hortelã para sabor. Evite líquidos durante as refeições. Para esportistas, hidrate antes, durante e após exercícios.",
+      "image": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1080&h=1920&fit=crop",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-3",
+      "title": "Almoço Equilibrado",
+      "content": "DICA: Divida o prato: 50% vegetais, 25% proteína magra, 25% carboidratos integrais. Use azeite extra-virgem para temperar. Mastigue devagar e saboreie cada garfada. Evite frituras e molhos pesados.",
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1080&h=1920&fit=crop",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-4",
+      "title": "Lanches Saudáveis",
+      "content": "DICA: Prepare snacks naturais: mix de castanhas, frutas secas, palitos de vegetais com homus. Evite produtos industrializados. Mantenha porções pequenas. Para doces, prefira frutas ou chocolate amargo.",
+      "image": "https://images.unsplash.com/photo-1515041761709-f9fc96e04cd3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-5",
+      "title": "Jantar Leve",
+      "content": "DICA: Jante 3 horas antes de dormir. Prefira sopas, saladas ou grelhados. Evite carboidratos pesados à noite. Inclua vegetais verdes e proteína magra. Para sobremesa, frutas ou chá calmante.",
+      "image": "https://images.unsplash.com/photo-1668665771757-4d42737d295a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-6",
+      "title": "Planejamento de Refeições",
+      "content": "DICA: Planeje o cardápio semanal, faça lista de compras e prepare ingredientes no domingo. Congele porções individuais. Tenha sempre vegetais limpos na geladeira. Economize tempo e evite desperdício.",
+      "image": "https://images.unsplash.com/photo-1523289333742-be1143f6b766?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-7",
+      "title": "Cozinha Inteligente",
+      "content": "DICA: Use temperos naturais: alho, cebola, ervas frescas, limão. Evite temperos prontos com sódio. Faça caldos caseiros e congele. Use panelas antiaderentes para reduzir óleo. Organize a despensa por categorias.",
+      "image": "https://images.unsplash.com/photo-1517646458010-ea6bd9f4a75f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-8",
+      "title": "Porções Moderadas",
+      "content": "DICA: Use pratos menores para controlar porções. Mastigue 20 vezes cada garfada. Pare de comer quando estiver 80% satisfeito. Sirva-se uma vez e evite repetir. Coma devagar para dar tempo do cérebro registrar saciedade.",
+      "image": "https://images.unsplash.com/photo-1606658046016-a9d52350d867?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1373",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-9",
+      "title": "Vegetais Coloridos",
+      "content": "DICA: Varie as cores dos vegetais: vermelho (tomate, pimentão), verde (brócolis, espinafre), laranja (cenoura, abóbora), roxo (berinjela, repolho roxo). Cada cor oferece nutrientes diferentes. Coma pelo menos 3 cores diferentes por dia.",
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1080&h=1920&fit=crop",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-10",
+      "title": "Proteínas Magras",
+      "content": "DICA: Escolha proteínas magras: peito de frango, peixes brancos, ovos, leguminosas (feijão, lentilha, grão-de-bico). Evite carnes processadas e frituras. Consuma proteína em todas as refeições para manter a saciedade.",
+      "image": "https://images.unsplash.com/photo-1559847844-5315695dadae?w=1080&h=1920&fit=crop",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-11",
+      "title": "Grãos Integrais",
+      "content": "DICA: Prefira grãos integrais: arroz integral, quinoa, aveia, pão integral. Eles têm mais fibras, vitaminas e minerais. Mantêm a glicemia estável e dão saciedade por mais tempo. Evite grãos refinados e processados.",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=1080&h=1920&fit=crop",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-12",
+      "title": "Gorduras Saudáveis",
+      "content": "DICA: Use gorduras boas: azeite extra-virgem, abacate, castanhas, sementes (chia, linhaça). Evite gorduras trans e saturadas. As gorduras boas ajudam na absorção de vitaminas e dão saciedade.",
+      "image": "https://images.unsplash.com/photo-1642689690565-bf0afb7eb41e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "food-tip",
+      "category": "Alimentação"
+    },
+    {
+      "id": "food-13",
+      "title": "Comer Consciente",
+      "content": "DICA: Coma sem distrações (TV, celular). Preste atenção no sabor, textura e aroma dos alimentos. Mastigue bem cada garfada. Faça pausas entre as garfadas. Isso melhora a digestão e evita excessos.",
+      "image": "https://images.unsplash.com/photo-1621261105631-807a31e9a708?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=708",
+      "type": "food-tip",
+      "category": "Alimentação"
+    }
+  ]
+}

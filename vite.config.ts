@@ -30,7 +30,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'wouter'],
-          ui: ['@radix-ui/react-*'],
         },
       },
     },

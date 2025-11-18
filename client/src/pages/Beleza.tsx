@@ -1,14 +1,16 @@
 import { useState, useMemo, useEffect } from "react";
 import { useStaticData } from "@/hooks/useStaticData";
+import { useMultipleArticleStats } from "@/hooks/useMultipleArticleStats";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Eye, Clock, AlertCircle } from "lucide-react";
+import { Calendar, Eye, Clock, Heart, AlertCircle } from "lucide-react";
 import { Link } from "wouter";
 import Pagination from "@/components/beleza/Pagination";
 import FilterBar from "@/components/beleza/FilterBar";
+import { SEO } from "@/components/SEO";
 
 interface Artigo {
   id: string;
@@ -23,8 +25,8 @@ interface Artigo {
   slug: string;
   destaque: boolean;
   dataPublicacao: string;
-  visualizacoes: number;
-  curtidas: number;
+  visualizacoes?: number;
+  curtidas?: number;
   metaTitulo: string;
   metaDescricao: string;
   artigosRelacionados: string[];
@@ -32,6 +34,10 @@ interface Artigo {
 
 export default function Beleza() {
   const { data, loading, error } = useStaticData<{ artigos: Artigo[] }>("artigos-beleza");
+  
+  // Buscar estatísticas reais dos artigos
+  const artigoIds = data?.artigos?.map(artigo => artigo.id) || [];
+  const { stats: articleStats, loading: statsLoading } = useMultipleArticleStats(artigoIds);
 
   // Garantir que a página sempre carregue do topo
   useEffect(() => {
@@ -84,8 +90,12 @@ export default function Beleza() {
         filteredArticles = filteredArticles.filter(artigo => artigo.destaque === true);
         break;
       case 'mais-curtidos':
-        // Ordenar por número de curtidas (decrescente)
-        filteredArticles = filteredArticles.sort((a, b) => (b.curtidas || 0) - (a.curtidas || 0));
+        // Ordenar por número de curtidas reais (decrescente)
+        filteredArticles = filteredArticles.sort((a, b) => {
+          const likesA = articleStats[a.id]?.likes || 0;
+          const likesB = articleStats[b.id]?.likes || 0;
+          return likesB - likesA;
+        });
         break;
     }
 
@@ -100,7 +110,7 @@ export default function Beleza() {
       totalPages,
       totalArticles
     };
-  }, [data?.artigos, currentPage, articlesPerPage, activeFilter]);
+  }, [data?.artigos, currentPage, articlesPerPage, activeFilter, articleStats]);
 
   // Função para mudar de página
   const handlePageChange = (page: number) => {
@@ -134,6 +144,14 @@ export default function Beleza() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        title="Beleza - Dicas e Tutoriais de Beleza | EllaTrend"
+        description="Descubra as melhores dicas de beleza, tutoriais de maquiagem, cuidados com a pele e produtos de beleza para realçar sua beleza natural. Guias completos e atualizados."
+        keywords="beleza, maquiagem, cuidados com a pele, produtos de beleza, tutoriais de beleza, skincare, cabelo, unhas, autoestima"
+        url="https://ellatrend.com/beleza"
+        section="Beleza"
+        tags={["beleza", "maquiagem", "skincare", "cabelo", "unhas"]}
+      />
       <style>{animationStyles}</style>
       <Header />
       
@@ -201,6 +219,18 @@ export default function Beleza() {
                       <Badge variant="destructive">Destaque</Badge>
                     </div>
                   )}
+                  <div className="absolute bottom-3 left-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm flex items-center gap-1 z-10">
+                    <Eye className="h-3 w-3" />
+                    <span>
+                      {statsLoading 
+                        ? '...' 
+                        : (articleStats[artigo.id]?.views || 0).toLocaleString()
+                      }
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 right-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm z-10">
+                    {artigo.tempoLeitura || '5 min leitura'}
+                  </div>
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
@@ -210,21 +240,20 @@ export default function Beleza() {
                     {artigo.descricao}
                   </p>
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>
-                          {new Date(artigo.dataPublicacao).toLocaleDateString('pt-BR')}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Eye className="h-4 w-4" />
-                        <span>{artigo.visualizacoes.toLocaleString()} visualizações</span>
-                      </div>
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="h-4 w-4" />
+                      <span>
+                        {new Date(artigo.dataPublicacao).toLocaleDateString('pt-BR')}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Clock className="h-4 w-4" />
-                      <span>{artigo.tempoLeitura}</span>
+                      <Heart className="h-4 w-4 text-red-500" />
+                      <span className="font-medium">
+                        {statsLoading 
+                          ? '...' 
+                          : (articleStats[artigo.id]?.likes || 0).toLocaleString()
+                        }
+                      </span>
                     </div>
                   </div>
                   

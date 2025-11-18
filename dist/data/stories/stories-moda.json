@@ -1,0 +1,116 @@
+{
+  "stories": [
+    {
+      "id": "moda-1",
+      "title": "Cápsula do Guarda-Roupa",
+      "content": "DICA: Escolha 7 peças básicas: 2 calças (jeans + social), 2 camisetas, 1 blazer, 1 vestido e 1 casaco. Todas em cores neutras (preto, branco, bege, azul marinho). Essas peças criam 21 combinações diferentes!",
+      "image": "https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-2",
+      "title": "Acessórios que Fazem a Diferença",
+      "content": "DICA: Use a regra do 3: máximo 3 acessórios por look. Exemplo: brinco + colar + bolsa. Ou pulseira + relógio + óculos. Acessórios dourados ficam elegantes, prateados são mais casuais.",
+      "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1080&h=1920&fit=crop",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-4",
+      "title": "Como Usar Camisa Oversized",
+      "content": "DICA: 3 passos para usar camisa oversized: 1️⃣ Use com calça de alfaiataria para equilíbrio, 2️⃣ Dê um nó na frente para marcar a cintura, 3️⃣ Adicione acessórios statement para finalizar.",
+      "backgroundColor": "linear-gradient(90deg, #FF6B9D 0%, #C06C84 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-5",
+      "title": "Must Have da Temporada",
+      "content": "DICA: Os 3 essenciais que você precisa: 👔 Blazer Estruturado (peça coringa), 👖 Wide Leg Jeans (conforto e estilo), 👜 Bolsa Bucket (acessório prático). Essas peças transformam qualquer look básico.",
+      "backgroundColor": "linear-gradient(45deg, #2C5364 0%, #203A43 50%, #0F2027 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-6",
+      "title": "Como Combinar Estampas",
+      "content": "DICA: Use uma cor em comum entre as estampas. Misture tamanhos: uma grande + uma pequena. Balance com peças lisas e neutras. Limite a 2-3 estampas por look.",
+      "backgroundColor": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-7",
+      "title": "Proporção Perfeita",
+      "content": "DICA: Se a parte de cima é volumosa, a de baixo deve ser ajustada. Oversized + Slim = Look Equilibrado. Use essa regra para criar silhuetas harmoniosas.",
+      "backgroundColor": "linear-gradient(180deg, #f093fb 0%, #f5576c 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-8",
+      "title": "Guarda-Roupa de Transição",
+      "content": "DICA: 1️ Sobreposições Leves (cardigans e jaquetas finas), 2️ Tecidos Versáteis (algodão e linho mais pesados), 3️ Calçados Fechados (troque sandálias por sapatilhas), 4️ Cores Neutras (introduza tons terrosos).",
+      "backgroundColor": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-9",
+      "title": "Acessórios Versáteis",
+      "content": "DICA: 👜 Bolsa Neutra (combina com tudo), 👟 Tênis Branco (do casual ao elegante), ⌚ Relógio Clássico (atemporal e sofisticado), 🕶️ Óculos Aviador (nunca sai de moda).",
+      "backgroundColor": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-10",
+      "title": "Erro que Encurta o Look",
+      "content": "DICA: ❌ NÃO FAÇA: Usar calça de cintura baixa com top curto cria uma linha que corta sua silhueta. ✅ FAÇA ISSO: Prefira cintura alta ou média para alongar as pernas e criar proporção.",
+      "backgroundColor": "linear-gradient(135deg, #ff6a00 0%, #ee0979 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-11",
+      "title": "Arrume Seu Guarda-Roupa",
+      "content": "DICA: ✓ Separe por categoria (blusas, calças, vestidos), ✓ Use cabides iguais para visual limpo, ✓ Organize por cores dentro de cada categoria, ✓ Deixe peças mais usadas em fácil acesso, ✓ Dobe malhas para não deformarem.",
+      "backgroundColor": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-12",
+      "title": "Silhueta Ideal",
+      "content": "DICA: Para alongar: use cores escuras, cintura alta e calças de alfaiataria. Para equilibrar: combine volumes opostos (parte de cima solta com parte de baixo justa). Para destacar: use acessórios statement e cores vibrantes.",
+      "backgroundColor": "linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-13",
+      "title": "Tecidos por Estação",
+      "content": "DICA: 🌸 Primavera: algodão, linho, seda leve. ☀️ Verão: viscose, modal, tecidos respiráveis. 🍂 Outono: lã, cashmere, veludo. ❄️ Inverno: lã pesada, alpaca, tecidos térmicos.",
+      "backgroundColor": "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-14",
+      "title": "Investimento Inteligente",
+      "content": "DICA: 💎 Peças atemporais: blazer, jeans clássico, camisa branca. 🎯 Acessórios versáteis: bolsa neutra, sapatos confortáveis. 🔄 Peças sazonais: compre em promoção no final da temporada. 📏 Ajustes: vale mais investir em um bom alfaiate.",
+      "backgroundColor": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    },
+    {
+      "id": "moda-15",
+      "title": "Look Corporativo",
+      "content": "DICA: 👔 Blazer estruturado + calça de alfaiataria, 👠 Sapatos fechados e confortáveis, 💼 Bolsa elegante e funcional, 🎨 Cores neutras com um toque de cor, ✨ Acessórios discretos e profissionais.",
+      "backgroundColor": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      "type": "fashion-tip",
+      "category": "Moda"
+    }
+  ]
+}

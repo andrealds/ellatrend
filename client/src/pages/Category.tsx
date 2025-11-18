@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Eye } from "lucide-react";
 import { Link } from "wouter";
 import { useStaticData } from "@/hooks/useStaticData";
+import { useMultipleArticleStats } from "@/hooks/useMultipleArticleStats";
 import { Categoria } from "@/types/categorias";
 import { Artigo } from "@/types/artigos";
 
@@ -27,6 +28,10 @@ export default function CategoryPage() {
       post.categoria === category.nome
     ) || [];
   }
+
+  // Buscar estatísticas reais dos artigos
+  const artigoIds = posts.map(post => post.id);
+  const { stats: articleStats, loading: statsLoading } = useMultipleArticleStats(artigoIds);
 
   const loading = categoriesLoading || artigosLoading;
 
@@ -108,7 +113,12 @@ export default function CategoryPage() {
                       </div>
                       <div className="flex items-center space-x-1">
                         <Eye className="h-4 w-4" />
-                        <span>{post.visualizacoes.toLocaleString()} visualizações</span>
+                        <span>
+                          {statsLoading 
+                            ? '...' 
+                            : (articleStats[post.id]?.views || 0).toLocaleString()
+                          } visualizações
+                        </span>
                       </div>
                     </div>
                   </div>

@@ -5,18 +5,42 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Eye, Star, Filter, Apple } from "lucide-react";
+import { Calendar, Eye, Heart, Filter, Apple } from "lucide-react";
 import { useStaticData } from "@/hooks/useStaticData";
+import { useMultipleArticleStats } from "@/hooks/useMultipleArticleStats";
 import { ArtigoUniversal } from "@/types/artigos";
 // import FilterBar from "@/components/beleza/FilterBar";
 import Pagination from "@/components/beleza/Pagination";
-import AdSpace from "@/components/beleza/AdSpace";
+
+interface Artigo {
+  id: string;
+  titulo: string;
+  descricao: string;
+  conteudo: string;
+  imagemDestaque: string;
+  autor: string;
+  tempoLeitura: string;
+  categoria: string;
+  tag: string;
+  slug: string;
+  destaque: boolean;
+  dataPublicacao: string;
+  visualizacoes?: number;
+  curtidas?: number;
+  metaTitulo: string;
+  metaDescricao: string;
+  artigosRelacionados: string[];
+}
 
 export default function Artigos() {
   const { data, loading, error } = useStaticData<{ artigos: Artigo[] }>("todos-os-artigos");
   const [activeFilter, setActiveFilter] = useState('todos');
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 12;
+
+  // Buscar estatísticas reais dos artigos
+  const artigoIds = data?.artigos?.map(artigo => artigo.id) || [];
+  const { stats: articleStats, loading: statsLoading } = useMultipleArticleStats(artigoIds);
 
   // Scroll para o topo quando a página carregar
   useEffect(() => {
@@ -280,6 +304,15 @@ export default function Artigos() {
                     <Badge variant="destructive">Destaque</Badge>
                   </div>
                 )}
+                <div className="absolute bottom-3 left-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm flex items-center gap-1 z-10">
+                  <Eye className="h-3 w-3" />
+                  <span>
+                    {statsLoading 
+                      ? '...' 
+                      : (articleStats[artigo.id]?.views || 0).toLocaleString()
+                    }
+                  </span>
+                </div>
                 <div className="absolute bottom-3 right-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm">
                   {artigo.tempoLeitura || '5 min'}
                 </div>
@@ -293,16 +326,23 @@ export default function Artigos() {
                     {artigo.descricao}
                   </p>
                 )}
-                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                  <div className="flex items-center space-x-1">
-                    <Calendar className="h-4 w-4" />
-                    <span>
-                      {new Date(artigo.dataPublicacao).toLocaleDateString('pt-BR')}
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="font-medium">4.8</span>
+                <div className="space-y-2 text-sm text-gray-500 mb-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="h-4 w-4" />
+                      <span>
+                        {new Date(artigo.dataPublicacao).toLocaleDateString('pt-BR')}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Heart className="h-4 w-4 text-red-500" />
+                      <span className="font-medium">
+                        {statsLoading 
+                          ? '...' 
+                          : (articleStats[artigo.id]?.likes || 0).toLocaleString()
+                        }
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <Link to={`/artigo/${artigo.slug}`}>
@@ -315,10 +355,6 @@ export default function Artigos() {
           ))}
         </div>
 
-        {/* Espaço para anúncios */}
-        <div className="mb-8">
-          <AdSpace />
-        </div>
 
         {/* Paginação */}
         {totalPages > 1 && (

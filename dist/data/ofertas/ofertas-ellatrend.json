@@ -1,0 +1,22 @@
+{
+  "ofertas": [
+    {
+      "id": "1",
+      "titulo": "Kit Completo de Skincare Coreano",
+      "descricao": "Rotina completa com 5 produtos essenciais para uma pele radiante e saudável.",
+      "precoOriginal": 299.90,
+      "precoDesconto": 199.90,
+      "desconto": 33,
+      "imagem": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&q=80",
+      "loja": "Beauty Store",
+      "link": "https://exemplo.com/produto1",
+      "destaque": true,
+      "categoria": "Beleza",
+      "avaliacao": 4.8,
+      "vendas": 1250,
+      "dataInicio": "2024-01-15T00:00:00Z",
+      "dataFim": "2024-02-15T23:59:59Z",
+      "disponivel": true
+    }
+  ]
+}

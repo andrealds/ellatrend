@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ellatrend.com.br/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_internal/
+
+# Allow important pages
+Allow: /artigos/
+Allow: /beleza/
+Allow: /alimentacao/
+Allow: /saude-mental/
+Allow: /deals/

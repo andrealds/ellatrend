@@ -1,0 +1,29 @@
+name = "ellatrend-api"
+main = "worker.js"
+compatibility_date = "2024-01-15"
+
+# Configuração do KV Storage
+[[kv_namespaces]]
+binding = "ARTIGOS_KV"
+id = "91057d7ed71b45a290e0f75727d3c515"
+preview_id = "077d0a1cda0d4fd3b14c4345633f5fb2"
+
+# KV para Rate Limiting
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "91057d7ed71b45a290e0f75727d3c515"  # Usando o mesmo KV por enquanto
+preview_id = "077d0a1cda0d4fd3b14c4345633f5fb2"
+
+# Variáveis de ambiente serão configuradas no Cloudflare Dashboard
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "v1"
+# API_KEY será configurada via Cloudflare Dashboard (secrets)
+RATE_LIMIT_VIEWS = "5"
+RATE_LIMIT_LIKES = "10"
+RATE_LIMIT_WINDOW = "60000"
+
+# Configuração de rotas (opcional)
+# routes = [
+#   { pattern = "api.ellatrend.com.br/*", zone_name = "ellatrend.com.br" }
+# ]
